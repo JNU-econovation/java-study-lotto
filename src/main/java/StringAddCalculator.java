@@ -2,8 +2,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringAddCalculator {
-    private static final int START_NUMBER = '0';
-    private static final int END_NUMBER = '9';
+    private static final char START_NUMBER = '0';
+    private static final char END_NUMBER = '9';
 
     public int add(String text) {
         int number = 0;
