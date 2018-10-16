@@ -26,9 +26,7 @@ public class StringAddCalculator {
     }
 
     public boolean isEmptyOrNull(String text) {
-        if (text == null) return true;
-        if (text.isEmpty()) return true;
-        return false;
+        return text == null || text.isEmpty();
     }
 
     public void check(String token) {
