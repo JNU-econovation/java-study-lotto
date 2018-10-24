@@ -7,7 +7,6 @@ public class StringAddCalculator {
 
     public int add(String text) {
         if (isNull(text)) return 0;
-        if (isOnlyNumber(text)) return Integer.parseInt(text);
         return addNumbers(splitText(text));
     }
 
@@ -15,20 +14,20 @@ public class StringAddCalculator {
         return text == null || text.isEmpty();
     }
 
-    private boolean isOnlyNumber(String text) {
-        Pattern onlyNumberPattern = Pattern.compile(numberRegex);
-        Matcher matchPattern = onlyNumberPattern.matcher(text);
-
-        return matchPattern.find();
-    }
-
     private int addNumbers(String[] numbers) {
         int sum = 0;
         for (int i = 0; i < numbers.length; i++) {
+            checkNotNumber(numbers[i]);
             checkNegative(Integer.parseInt(numbers[i]));
             sum += Integer.parseInt(numbers[i]);
         }
         return sum;
+    }
+
+    private void checkNotNumber(String text) {
+        Pattern onlyNumberPattern = Pattern.compile(numberRegex);
+        Matcher matchPattern = onlyNumberPattern.matcher(text);
+        if (matchPattern.find()) throw new RuntimeException();
     }
 
     private void checkNegative(int number) {
