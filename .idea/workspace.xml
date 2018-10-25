@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aff19a42-2bff-41f7-a6d0-161225d270ae" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/StringAddCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/StringAddCalculator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/StringAddCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/StringAddCalculator.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/empty.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/show.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/empty.txt" beforeDir="false" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -24,11 +35,18 @@
     <session id="-1402188311">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+<<<<<<< HEAD
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.opened" value="5" />
+=======
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="3" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -43,12 +61,20 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="java" value="1262" />
+=======
+          <entry key="java" value="1164" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="JAVA" value="1262" />
+=======
+          <entry key="JAVA" value="1164" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
         </counts>
       </usages-collector>
     </session>
@@ -58,8 +84,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/StringAddCalculatorTest.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="75">
               <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+=======
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#197#198#0" expanded="true" />
@@ -69,6 +100,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/StringAddCalculator.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -78,6 +110,24 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#637#638#0" expanded="true" />
                 <element signature="e#692#693#0" expanded="true" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/lang/NumberFormatException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-13">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/StringAddCalculator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
               </folding>
             </state>
           </provider>
@@ -435,10 +485,17 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="611" />
     <option name="y" value="23" />
     <option name="width" value="1069" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="67" />
+    <option name="y" value="30" />
+    <option name="width" value="1217" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
     <option name="height" value="1027" />
   </component>
   <component name="ProjectView">
@@ -447,6 +504,10 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+<<<<<<< HEAD
+=======
+      <pane id="AndroidView" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -493,13 +554,20 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+<<<<<<< HEAD
       <pane id="AndroidView" />
+=======
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540465816261" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539697680512" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -568,13 +636,23 @@
       <updated>1539171893687</updated>
       <workItem from="1539171894935" duration="869000" />
       <workItem from="1539598620860" duration="739000" />
+<<<<<<< HEAD
       <workItem from="1539672278919" duration="9369000" />
       <workItem from="1540389624283" duration="563000" />
       <workItem from="1540461543078" duration="3844000" />
+=======
+      <workItem from="1539672278919" duration="7641000" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
     </task>
     <servers />
   </component>
   <component name="TestHistory">
+<<<<<<< HEAD
+=======
+    <history-entry file="StringAddCalculatorTest - 2018.10.16 at 21h 30m 23s.xml">
+      <configuration name="StringAddCalculatorTest" configurationId="JUnit" />
+    </history-entry>
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
     <history-entry file="StringAddCalculatorTest - 2018.10.16 at 21h 35m 15s.xml">
       <configuration name="StringAddCalculatorTest" configurationId="JUnit" />
     </history-entry>
@@ -599,6 +677,7 @@
     <history-entry file="StringAddCalculatorTest - 2018.10.16 at 22h 33m 35s.xml">
       <configuration name="StringAddCalculatorTest" configurationId="JUnit" />
     </history-entry>
+<<<<<<< HEAD
     <history-entry file="StringAddCalculatorTest - 2018.10.16 at 22h 46m 22s.xml">
       <configuration name="StringAddCalculatorTest" configurationId="JUnit" />
     </history-entry>
@@ -613,12 +692,26 @@
     <frame x="611" y="23" width="1069" height="1027" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18111002" />
+=======
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="9249000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18498169" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+<<<<<<< HEAD
+=======
+      <window_info anchor="bottom" id="Messages" weight="0.32941177" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.23101604" />
@@ -628,10 +721,16 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="11" weight="0.32941177" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32941177" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="11" weight="0.32941177" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -651,18 +750,39 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/StringCalculator/StringAddCalculatorMain.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/lang/NumberFormatException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/StringCalculator/StringAddCalculatorMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/lang/NumberFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
           <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/StringAddCalculatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="75">
           <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+=======
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#197#198#0" expanded="true" />
@@ -673,12 +793,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/StringAddCalculator.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="495">
           <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#637#638#0" expanded="true" />
             <element signature="e#692#693#0" expanded="true" />
+=======
+        <state relative-caret-position="360">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> 9320ff2fc5ae48fd2d4ae57bec53740b9de73ec5
           </folding>
         </state>
       </provider>
