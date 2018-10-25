@@ -7,35 +7,27 @@ public class StringAddCalculator {
 
         if(isNullOrEmpty(text)) { return 0; }
 
-        return checkRegex(text);
+        int sum = 0;
+        for (String token : splitText(text)) {
+            checkException(token);
+            sum += Integer.parseInt(token);
+        }
+        return sum;
     }
 
-    private int checkRegex(String text) {
+    private String[] splitText(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if(m.find()) {
             String customDelimiter = m.group(1);
             String[] tokens = m.group(2).split(customDelimiter);
-            return sum(tokens);
+            return tokens;
         }
-
         String[] tokens = text.split(",|:");
-        return sum(tokens);
+        return tokens;
     }
 
     public boolean isNullOrEmpty(String text) {
-        if(text == null || text.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
-    public int sum(String[] tokens) {
-        int sum = 0;
-        for (int i = 0; i < tokens.length; i++) {
-            checkException(tokens[i]);
-            sum += Integer.parseInt(tokens[i]);
-        }
-        return sum;
+        return (text == null || text.isEmpty());
     }
 
     public void checkException(String token) {
