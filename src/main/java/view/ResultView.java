@@ -11,11 +11,13 @@ public class ResultView {
         for (int i = 0; i < autoLottoDTO.getLottoTickets().size(); i++) {
             System.out.println(autoLottoDTO.getLottoTickets().get(i));
         }
+
         System.out.println();
     }
 
     public static void printStatistics(AutoLottoResultDTO autoLottoResultDTO) {
         int[] match = autoLottoResultDTO.getMatchNumCount();
+
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---------");
@@ -24,6 +26,5 @@ public class ResultView {
         System.out.println(String.format("5개 일치 (150000원)- %d개", match[5]));
         System.out.println(String.format("6개 일치 (2000000000원)- %d개", match[6]));
         System.out.println(String.format("총 수익률은 %.2f입니다.", autoLottoResultDTO.getEarningRate()));
-
     }
 }

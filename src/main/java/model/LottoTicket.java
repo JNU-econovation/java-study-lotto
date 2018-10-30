@@ -1,32 +1,35 @@
 package model;
 
-import util.RanNumGenerator;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class LottoTicket {
-    List<Integer> numbers = new ArrayList<>();
+    public static final int MAX_NUMBER = 6;
+    public static final int[] NUMBER = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+            23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45};
+    private List<Integer> numbers;
 
     public LottoTicket() {
-        selectNumAuto();
+        makeAutoNumber();
     }
 
-    public LottoTicket(String numString) {
-        StringTokenizer stringTokenizer = new StringTokenizer(numString, ", ");
+    public LottoTicket(String numberString) {
+        makeManualNumber(numberString);
+    }
+
+    private void makeAutoNumber() {
+        ArrayList<Integer> ball = new ArrayList<>();
+        for (int number : NUMBER) {
+            ball.add(number);
+        }
+        Collections.shuffle(ball);
+        numbers = ball.subList(0, MAX_NUMBER);
+        sort();
+    }
+
+    private void makeManualNumber(String numberString) {
+        StringTokenizer stringTokenizer = new StringTokenizer(numberString, ", ");
         while (stringTokenizer.hasMoreTokens()) {
             numbers.add(Integer.parseInt(stringTokenizer.nextToken()));
-        }
-    }
-
-    public void selectNumAuto() {
-        while (numbers.size() < 6) {
-            int ranNum = RanNumGenerator.getRanNumber();
-            if (!numbers.contains(ranNum)) {
-                numbers.add(ranNum);
-            }
         }
         sort();
     }
@@ -35,12 +38,8 @@ public class LottoTicket {
         Collections.sort(numbers);
     }
 
-    public int checkWinner(int[] winnerNum) {
-        int num = 0;
-        for (int i = 0; i < winnerNum.length; i++) {
-            if (numbers.contains(winnerNum[i])) num++;
-        }
-        return num;
+    public boolean isContain(int i) {
+        return numbers.contains(i);
     }
 
     @Override
