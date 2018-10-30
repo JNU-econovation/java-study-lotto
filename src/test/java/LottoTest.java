@@ -6,21 +6,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTest {
     private Lotto lotto;
+    private int count = 5;
 
     @Before
     public void setUp() throws Exception {
-        lotto = new Lotto();
+        lotto = new Lotto(count);
     }
 
     @Test
-    public void getAllBalls_모든_로또공_반환() {
-        int size = lotto.getAllBalls().size();
-        assertThat(size).isEqualTo(45);
-    }
-
-    @Test
-    public void issue_로또발급() {
-        int size = lotto.issue().size();
-        assertThat(size).isEqualTo(6);
+    public void buyTickets_count만큼_복권구매() {
+        int size = lotto.buyTickets(count).size();
+        assertThat(size).isEqualTo(count);
     }
 }
