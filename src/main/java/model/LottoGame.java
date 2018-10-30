@@ -62,6 +62,7 @@ public class LottoGame {
         for (int i = 3; i < 7; i++) {
             sum = sum + numberOfMatch[i] * PRIZE[i - 3];
         }
+
         return sum / inputMoney;
     }
 
