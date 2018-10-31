@@ -21,15 +21,12 @@ public class Lottery {
     }
 
     public List<Integer> issue() {
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> numbers;
         List<Integer> balls = createBalls();
 
         Collections.shuffle(balls);
-        for (int i = 0; i < NUMBER_OF_ENTRY; i++) {
-            numbers.add(balls.get(i));
-        }
+        numbers = balls.subList(0, NUMBER_OF_ENTRY);
         Collections.sort(numbers);
-
         return numbers;
     }
 

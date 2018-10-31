@@ -1,15 +1,19 @@
 package model;
 
 import dto.LottoDTO;
+import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+    private static final int PRICE = 1000;
     private List<Lottery> lotteries;
 
-    public Lotto(int count) {
+    public Lotto(int money) {
+        int count = money / PRICE;
         this.lotteries = buyTickets(count);
+        InputView.buyTickets(count);
     }
 
     public List<Lottery> buyTickets(int count) {

@@ -13,7 +13,7 @@ public class Result {
     private final int THIRD_PRIZE = 50000;
     private final int FOURTH_PRIZE = 5000;
     private List<Integer> winningNumbers;
-    private List<Integer> stratistics;
+    private List<Integer> statistics;
     private LottoDTO lottoDTO;
     private double profit;
 
@@ -32,39 +32,39 @@ public class Result {
     }
 
     public void update() {
-        stratistics = getStratistics();
+        statistics = getStatistics();
         profit = getProfit();
     }
 
-    public List<Integer> getStratistics() {
-        initStratistics();
+    public List<Integer> getStatistics() {
+        initStatistics();
 
         for (Lottery lottery : lottoDTO.getLotteries()) {
-            updateStratistics(lottery);
+            updateStatistics(lottery);
         }
-        return stratistics;
+        return statistics;
     }
 
-    public void initStratistics() {
-        stratistics = new ArrayList<>();
+    public void initStatistics() {
+        statistics = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            stratistics.add(0);
+            statistics.add(0);
         }
     }
 
-    public void updateStratistics(Lottery lottery) {
+    public void updateStatistics(Lottery lottery) {
         switch(getMatchCount(lottery.getTicket())) {
             case 3:
-                stratistics.set(0, stratistics.get(0) + 1);
+                statistics.set(0, statistics.get(0) + 1);
                 break;
             case 4:
-                stratistics.set(1, stratistics.get(1) + 1);
+                statistics.set(1, statistics.get(1) + 1);
                 break;
             case 5:
-                stratistics.set(2, stratistics.get(2) + 1);
+                statistics.set(2, statistics.get(2) + 1);
                 break;
             case 6:
-                stratistics.set(3, stratistics.get(3) + 1);
+                statistics.set(3, statistics.get(3) + 1);
                 break;
             default :
                 break;
@@ -84,15 +84,15 @@ public class Result {
         double profit;
         double money = 0;
 
-        money += stratistics.get(0) * FOURTH_PRIZE;
-        money += stratistics.get(1) * THIRD_PRIZE;
-        money += stratistics.get(2) * SECOND_PRIZE;
-        money += stratistics.get(3) * FIRST_PRIZE;
+        money += statistics.get(0) * FOURTH_PRIZE;
+        money += statistics.get(1) * THIRD_PRIZE;
+        money += statistics.get(2) * SECOND_PRIZE;
+        money += statistics.get(3) * FIRST_PRIZE;
         profit = money / (lottoDTO.getCount() * PRICE) * 100;
         return profit;
     }
 
     public ResultDTO toResultDTO() {
-        return new ResultDTO(stratistics, profit);
+        return new ResultDTO(statistics, profit);
     }
 }

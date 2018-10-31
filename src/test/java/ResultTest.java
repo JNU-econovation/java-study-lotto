@@ -29,14 +29,14 @@ public class ResultTest {
     }
 
     @Test
-    public void getStratistics_size가_4인_리스트반환() {
-        int size = result.getStratistics().size();
+    public void getStatistics_size가_4인_리스트반환() {
+        int size = result.getStatistics().size();
         assertThat(size).isEqualTo(4);
     }
 
     @Test
     public void getProfitTest() {
-        result.getStratistics();
+        result.getStatistics();
         assertThat(result.getProfit()).isNotNull();
     }
 
