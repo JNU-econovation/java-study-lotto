@@ -1,7 +1,7 @@
 package model;
 
 import dto.LottoDTO;
-import view.InputView;
+import view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Lotto {
     public Lotto(int money) {
         int count = money / PRICE;
         this.lotteries = buyTickets(count);
-        InputView.buyTickets(count);
+        ResultView.printBuyTickets(count);
     }
 
     public List<Lottery> buyTickets(int count) {

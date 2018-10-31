@@ -16,4 +16,8 @@ public class ResultView {
                 "6개 일치 (2000000000원)- %d개\n" +
                 "총 수익률은 %.1f%%입니다.", statistics.get(0), statistics.get(1), statistics.get(2), statistics.get(3), resultDTO.getProfit());
     }
+
+    public static void printBuyTickets(int count) {
+        System.out.println(count + "개를 구매했습니다.");
+    }
 }
