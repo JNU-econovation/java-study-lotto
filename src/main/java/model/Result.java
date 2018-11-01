@@ -8,10 +8,7 @@ import java.util.List;
 
 public class Result {
     private final int PRICE = 1000;
-    private final int FIRST_PRIZE = 2000000000;
-    private final int SECOND_PRIZE = 1500000;
-    private final int THIRD_PRIZE = 50000;
-    private final int FOURTH_PRIZE = 5000;
+    private Rank[] ranks = Rank.values();
     private List<Integer> winningNumbers;
     private List<Integer> statistics;
     private LottoDTO lottoDTO;
@@ -39,8 +36,8 @@ public class Result {
     public List<Integer> getStatistics() {
         initStatistics();
 
-        for (Lottery lottery : lottoDTO.getLotteries()) {
-            updateStatistics(lottery);
+        for (Lotto lotto : lottoDTO.getLotteries()) {
+            updateStatistics(lotto);
         }
         return statistics;
     }
@@ -52,8 +49,8 @@ public class Result {
         }
     }
 
-    public void updateStatistics(Lottery lottery) {
-        switch(getMatchCount(lottery.getTicket())) {
+    public void updateStatistics(Lotto lotto) {
+        switch(getMatchCount(lotto.getTicket())) {
             case 3:
                 statistics.set(0, statistics.get(0) + 1);
                 break;
@@ -71,11 +68,11 @@ public class Result {
         }
     }
 
-    public int getMatchCount(List<Integer> lottery) {
+    public int getMatchCount(List<LottoNo> ticket) {
         int matchCount = 0;
 
         for (Integer winningNumber : winningNumbers) {
-            if(lottery.contains(winningNumber)) matchCount++;
+            //if(ticket.contains(winningNumber)) matchCount++;
         }
         return matchCount;
     }
@@ -84,10 +81,10 @@ public class Result {
         double profit;
         double money = 0;
 
-        money += statistics.get(0) * FOURTH_PRIZE;
-        money += statistics.get(1) * THIRD_PRIZE;
-        money += statistics.get(2) * SECOND_PRIZE;
-        money += statistics.get(3) * FIRST_PRIZE;
+        money += statistics.get(0) * ranks[3].getWinningMoney();
+        money += statistics.get(1) * ranks[2].getWinningMoney();
+        money += statistics.get(2) * ranks[1].getWinningMoney();
+        money += statistics.get(3) * ranks[0].getWinningMoney();
         profit = money / (lottoDTO.getCount() * PRICE) * 100;
         return profit;
     }
