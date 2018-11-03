@@ -3,14 +3,10 @@ package view;
 import dto.LottoListDTO;
 import dto.WinningCheckerDTO;
 import model.Lotto;
+import model.WinningInfo;
 
-import java.util.List;
 
 public class OutputView {
-    private static final int CORRECT_3NUMBERS_BENEFIT = 5000;
-    private static final int CORRECT_4NUMBERS_BENEFIT = 50000;
-    private static final int CORRECT_5NUMBERS_BENEFIT = 1500000;
-    private static final int CORRECT_6NUMBERS_BENEFIT = 2000000000;
 
     public static void getPurchaseResult(LottoListDTO lottoList) {
         System.out.println(lottoList.getLottoList().size() + "개를 구매했습니다.");
@@ -33,36 +29,23 @@ public class OutputView {
         return lottoNumbers.toString();
     }
 
-    public static void getWinningInfo(WinningCheckerDTO lottoCheckerDTO, int money) {
+    public static void getWinningResult(WinningCheckerDTO lottoCheckerDTO) {
         System.out.println("\n당첨 통계 \n---------");
-        List<Lotto> lottoListCorrecting3Nubmers = lottoCheckerDTO.getLottoListCorrecting3Numbers();
-        List<Lotto> lottoListCorrecting4Nubmers = lottoCheckerDTO.getLottoListCorrecting4Numbers();
-        List<Lotto> lottoListCorrecting5Nubmers = lottoCheckerDTO.getLottoListCorrecting5Numbers();
-        List<Lotto> lottoListCorrecting6Nubmers = lottoCheckerDTO.getLottoListCorrecting6Numbers();
 
-        System.out.println(makeStatisticResult(3, lottoListCorrecting3Nubmers, CORRECT_3NUMBERS_BENEFIT)
-                + "\n" + makeStatisticResult(4, lottoListCorrecting4Nubmers, CORRECT_4NUMBERS_BENEFIT)
-                + "\n" + makeStatisticResult(5, lottoListCorrecting5Nubmers, CORRECT_5NUMBERS_BENEFIT)
-                + "\n" + makeStatisticResult(6, lottoListCorrecting6Nubmers, CORRECT_6NUMBERS_BENEFIT));
+        for (int i = WinningInfo.MIN_COUNT_GET_BENEFIT; i < WinningInfo.MAX_COUNT_GET_BENEFIT; i++) {
+            System.out.println(makeStatisticResult(WinningInfo.getCorrectCount(i), lottoCheckerDTO.getWinningList()[i], WinningInfo.getBenefit(i)));
+        }
 
-        int profit = CalculateProfit(CORRECT_3NUMBERS_BENEFIT, lottoListCorrecting3Nubmers.size())
-                + CalculateProfit(CORRECT_3NUMBERS_BENEFIT, lottoListCorrecting4Nubmers.size())
-                + CalculateProfit(CORRECT_3NUMBERS_BENEFIT, lottoListCorrecting5Nubmers.size())
-                + CalculateProfit(CORRECT_3NUMBERS_BENEFIT, lottoListCorrecting6Nubmers.size());
-
-        System.out.printf("총 수익률은 %.2f%%입니다", (float) profit / money * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다", lottoCheckerDTO.getProfitRate());
     }
 
-    private static String makeStatisticResult(int correctCount, List<Lotto> winningLottoList, int benefit) {
+    private static String makeStatisticResult(int ranking, int correctCount, int benefit) {
         StringBuilder message = new StringBuilder();
-        message.append(correctCount).append("개 일치 (")
-                .append(benefit).append(")- ")
-                .append(winningLottoList.size()).append("개");
+        message.append(ranking).append("개 일치 (")
+                .append(benefit).append("원)- ")
+                .append(correctCount).append("개");
 
         return message.toString();
     }
 
-    private static int CalculateProfit(int count, int benefit) {
-        return count * benefit;
-    }
 }

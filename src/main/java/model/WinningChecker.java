@@ -1,43 +1,31 @@
 package model;
 
 import dto.WinningCheckerDTO;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class WinningChecker {
-    private static List<Lotto> lottoListCorrecting3Numbers = new ArrayList();
-    private static List<Lotto> lottoListCorrecting4Numbers = new ArrayList();
-    private static List<Lotto> lottoListCorrecting5Numbers = new ArrayList();
-    private static List<Lotto> lottoListCorrecting6Numbers = new ArrayList();
+    private static int[] winningList = new int[7];
+    private static float profitRate;
 
-
-    public void checkWinningLotto(List<Lotto> lottoList, String winningNumbers) {
+    public void checkWinningLotto(List<Lotto> lottoList, String winningNumbers, int money) {
         for (int i = 0; i < lottoList.size(); i++) {
-            addWinningLottoToList(lottoList.get(i), checkCorrectCounts(lottoList.get(i), Spliter.splitNumbers(winningNumbers)));
+            adaptWinningList(checkCorrectCounts(lottoList.get(i), Converter.splitNumbers(winningNumbers)));
         }
+
+        calculateProfitRate(money);
+        toLottoCheckerDTO();
     }
 
-    private static void addWinningLottoToList(Lotto lotto, int correctCounts) {
-        if (correctCounts == 3) {
-            lottoListCorrecting3Numbers.add(lotto);
-        }
-        if (correctCounts == 4) {
-            lottoListCorrecting4Numbers.add(lotto);
-        }
-        if (correctCounts == 5) {
-            lottoListCorrecting5Numbers.add(lotto);
-        }
-        if (correctCounts == 6) {
-            lottoListCorrecting3Numbers.add(lotto);
-        }
+    private void adaptWinningList(int checkCorrectCounts) {
+        winningList[checkCorrectCounts]++;
     }
 
 
     public int checkCorrectCounts(Lotto lotto, int[] winningNumbers) {
         int correctCounts = 0;
         for (int i = 0; i < winningNumbers.length; i++) {
-            correctCounts += isContains(convertArrayToArrayList(lotto.getLottoNumbers()), winningNumbers[i]);
+            correctCounts += checkContains(convertArrayToArrayList(lotto.getLottoNumbers()), winningNumbers[i]);
         }
         return correctCounts;
     }
@@ -51,13 +39,23 @@ public class WinningChecker {
         return convertedList;
     }
 
-    private static int isContains(List numbers, int winningNumber) {
+    private static int checkContains(List numbers, int winningNumber) {
         if (!numbers.contains(winningNumber))
             return 0;
         return 1;
     }
 
+    public static void calculateProfitRate(int money) {
+        int profit = 0;
+
+        for (int i = WinningInfo.MIN_COUNT_GET_BENEFIT; i < WinningInfo.MAX_COUNT_GET_BENEFIT; i++) {
+            profit += winningList[i] * WinningInfo.getBenefit(i);
+        }
+
+        profitRate = ((float) profit / money) * 100;
+    }
+
     public WinningCheckerDTO toLottoCheckerDTO() {
-        return new WinningCheckerDTO(lottoListCorrecting3Numbers, lottoListCorrecting4Numbers, lottoListCorrecting5Numbers, lottoListCorrecting6Numbers);
+        return new WinningCheckerDTO(winningList, profitRate);
     }
 }

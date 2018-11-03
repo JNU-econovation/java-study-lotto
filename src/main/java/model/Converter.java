@@ -1,6 +1,6 @@
 package model;
 
-public class Spliter {
+public class Converter {
 
     public static int[] splitNumbers(String input) {
         String[] numbers = input.split(",");

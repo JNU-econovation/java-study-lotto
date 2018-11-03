@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class WinningNumbersCheckerTest {
     @Test
     public void 입력된당첨번호분리Test() {
-        assertEquals(6, Spliter.splitNumbers("1, 2, 3, 4, 5, 6").length);
+        assertEquals(6, Converter.splitNumbers("1, 2, 3, 4, 5, 6").length);
     }
 
     @Test

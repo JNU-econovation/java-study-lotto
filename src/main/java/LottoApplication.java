@@ -14,7 +14,7 @@ public class LottoApplication {
         OutputView.getPurchaseResult(lottoList);
 
         String winningNumbers = InputView.inputWinningNumbers();
-        lottoChecker.checkWinningLotto(lottoList.getLottoList(), winningNumbers);
-        OutputView.getWinningInfo(lottoChecker.toLottoCheckerDTO(), money);
+        lottoChecker.checkWinningLotto(lottoList.getLottoList(), winningNumbers, money);
+        OutputView.getWinningResult(lottoChecker.toLottoCheckerDTO());
     }
 }
