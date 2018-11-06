@@ -4,6 +4,7 @@ import model.LottoStore;
 import model.Result;
 import utils.SearchElement;
 import org.junit.Test;
+import view.InputView;
 
 public class LottoTest {
 
@@ -41,7 +42,7 @@ public class LottoTest {
         int lottoExample[][] = {{1, 2, 3, 4, 5, 6}, {2, 4, 6, 8, 10, 12}};
         String winningString = "1,2,3,4,5,6";
         Result result = new Result(lottoStore, lottoExample, winningString);
-        result.checkMyLottos();
+        result.checkMyLottos(winningString);
         assertEquals(1, result.rankList[0]);
     }
 
@@ -50,7 +51,7 @@ public class LottoTest {
         int lottoExample[][] = {{1, 2, 3, 4, 5, 6}, {2, 4, 6, 8, 10, 12}};
         String winningString = "1,2,3,4,5,6";
         Result result = new Result(lottoStore, lottoExample, winningString);
-        result.checkMyLottos();
+        result.checkMyLottos(winningString);
         assertEquals(result.winningMoney, result.winningMoney);
     }
 
@@ -59,7 +60,7 @@ public class LottoTest {
         int lottoExample[][] = {{1, 2, 3, 4, 5, 6}, {2, 4, 6, 8, 10, 12}};
         String winningString = "1,2,3,4,5,6";
         Result result = new Result(lottoStore, lottoExample, winningString);
-        result.checkMyLottos();
+        result.checkMyLottos(winningString);
         assertEquals(result.winningMoney / result.inputMoney, result.winningMoney / result.inputMoney);
     }
 }

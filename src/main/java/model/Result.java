@@ -27,9 +27,14 @@ public class Result {
         this.myLottoResult = new int[myLottos.length];
     }
 
-    public void checkMyLottos() {
-        printLottos();
-        this.winningNumbers = stringToIntegerArray(inputView.winnerNumber());
+    public Result(LottoStore lottoStore, int myLottos[][], String winnintString){
+        this.inputMoney = lottoStore.inputMoney;
+        this.myLottos = myLottos;
+        this.myLottoResult = new int[myLottos.length];
+        this.winningNumbers = stringToIntegerArray(winnintString);
+    }
+    public void checkMyLottos(String winningNumber) {
+        setWinningNumbers(winningNumber);
         for (int myLottoSeq = 0; myLottoSeq < myLottos.length; myLottoSeq++) {
             checkEachLotto(myLottoSeq);
         }
@@ -38,6 +43,9 @@ public class Result {
         }
     }
 
+    public void setWinningNumbers(String winningString){
+        this.winningNumbers = stringToIntegerArray(winningString);
+    }
     public void checkEachLotto(int myLottoSeq) {
         SearchElement observer = new SearchElement();
         sameNumberCounter = 0;
