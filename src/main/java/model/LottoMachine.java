@@ -12,8 +12,8 @@ public class LottoMachine {
     static final int NUMBEROFLOTTOELEMENT = 6;
 
     List<Integer> lottoNumbers = new ArrayList<>();
-    int numberOfOrder;
-    int lottos[][] = null;
+    public int numberOfOrder;
+    public int lottos[][] = null;
 
     public LottoMachine() {
     }
@@ -22,18 +22,11 @@ public class LottoMachine {
         this.numberOfOrder = numberOfOrder;
     }
 
-
-
     public int[][] printOutLottos() {
         lottos = new int[numberOfOrder][];
         for (int i = 0; i < numberOfOrder; i++) {
             lottos[i] = generateLotto();
         }
-
-        System.out.println(numberOfOrder+ "개를 구매했습니다.");
-        for(int i=0;i< numberOfOrder;i++)
-            System.out.println(Arrays.toString(lottos[i]));
-
         return lottos;
     }
 

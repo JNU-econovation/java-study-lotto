@@ -2,13 +2,13 @@ package view;
 
 import model.Result;
 
+
 public class ResultView {
     Result result;
 
     public ResultView(Result result) {
         this.result = result;
     }
-
 
     public void printResult() {
         System.out.println("당첨 통계");

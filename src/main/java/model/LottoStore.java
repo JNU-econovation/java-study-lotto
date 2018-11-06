@@ -4,7 +4,7 @@ public class LottoStore {
 
     static final int PRICE = 1000;
     public int inputMoney;
-    int numberOfBought;
+    public int numberOfBought;
 
     public LottoStore(int inputMoney) {
         this.inputMoney = inputMoney;

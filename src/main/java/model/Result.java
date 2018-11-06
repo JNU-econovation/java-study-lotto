@@ -1,13 +1,16 @@
 package model;
 
 import utils.SearchElement;
+import view.InputView;
+import java.util.Arrays;
 import static utils.Splitor.stringToIntegerArray;
+
 
 public class Result {
     static final int RANK = 4;
-    static final int NUMBER_OF_LOTTO_ELEMENT = 6;
     public static final int[] WINNING_MONEY = {2000000000, 1500000, 50000, 5000};
 
+    public InputView inputView;
     public int inputMoney;
     public int myLottos[][];
     public int winningNumbers[];
@@ -17,14 +20,16 @@ public class Result {
     public int winningMoney;
 
 
-    public Result(LottoStore lottoStore, int myLottos[][], String winningString) {
+    public Result(InputView inputView, LottoStore lottoStore, int myLottos[][]) {
+        this.inputView = inputView;
         this.inputMoney = lottoStore.inputMoney;
         this.myLottos = myLottos;
-        this.winningNumbers = stringToIntegerArray(winningString);
         this.myLottoResult = new int[myLottos.length];
     }
 
     public void checkMyLottos() {
+        printLottos();
+        this.winningNumbers = stringToIntegerArray(inputView.winnerNumber());
         for (int myLottoSeq = 0; myLottoSeq < myLottos.length; myLottoSeq++) {
             checkEachLotto(myLottoSeq);
         }
@@ -37,15 +42,21 @@ public class Result {
         SearchElement observer = new SearchElement();
         sameNumberCounter = 0;
         for (int j = 0; j < winningNumbers.length; j++) {
-            isTargetHere(observer, myLottoSeq, j);
+            isTargetContained(observer, myLottoSeq, j);
         }
         myLottoResult[myLottoSeq] = sameNumberCounter;
     }
 
-    public void isTargetHere(SearchElement observer, int index, int j) {
+    public void isTargetContained(SearchElement observer, int index, int j) {
         if (observer.isIntegerElement(myLottos[index], winningNumbers[j])) {
             sameNumberCounter++;
         }
+    }
+
+    public void printLottos() {
+        System.out.println(myLottos.length + "개를 구매했습니다.");
+        for (int i = 0; i < myLottos.length; i++)
+            System.out.println(Arrays.toString(myLottos[i]));
     }
 
     public void checkEachRanking(int lottoSequence) {
