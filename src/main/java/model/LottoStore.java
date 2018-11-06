@@ -9,7 +9,6 @@ public class LottoStore {
     public LottoStore(int inputMoney) {
         this.inputMoney = inputMoney;
         this.numberOfBought = inputMoney / PRICE;
-        System.out.println(numberOfBought + "개를 구매했습니다.");
     }
 
     public int[][] buyLotto() {

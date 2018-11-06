@@ -1,7 +1,5 @@
 package model;
 
-import utils.Print;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,7 +13,7 @@ public class LottoMachine {
 
     List<Integer> lottoNumbers = new ArrayList<>();
     int numberOfOrder;
-    int Lottos[][] = null;
+    int lottos[][] = null;
 
     public LottoMachine() {
     }
@@ -24,23 +22,19 @@ public class LottoMachine {
         this.numberOfOrder = numberOfOrder;
     }
 
+
+
     public int[][] printOutLottos() {
-        Lottos = new int[numberOfOrder][];
+        lottos = new int[numberOfOrder][];
         for (int i = 0; i < numberOfOrder; i++) {
-            Lottos[i] = generateLotto();
+            lottos[i] = generateLotto();
         }
 
-        for (int i = 0; i < numberOfOrder; i++)
-            Print.printIntegerArray(Lottos[i]);
+        System.out.println(numberOfOrder+ "개를 구매했습니다.");
+        for(int i=0;i< numberOfOrder;i++)
+            System.out.println(Arrays.toString(lottos[i]));
 
-        return Lottos;
-    }
-    public static void printIntegerArray(int array[]) {
-        System.out.print("[");
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.print("]\n");
+        return lottos;
     }
 
     public int[] generateLotto() {
