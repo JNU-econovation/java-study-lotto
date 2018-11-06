@@ -26,13 +26,12 @@ public class LottoMaker {
         return shuffledNumbers;
     }
 
-    private static int[] sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private static List sortNumbers(List<Integer> numbers) {
+        List sortedNumbers = new ArrayList();
 
-        int[] sortedNumbers = new int[NUMBER_PER_LOTTO];
-        for (int i = 0; i < sortedNumbers.length; i++) {
-            sortedNumbers[i] = numbers.get(i);
-        }
+        Collections.sort(numbers);
+        sortedNumbers.addAll(numbers);
+
         return sortedNumbers;
     }
 

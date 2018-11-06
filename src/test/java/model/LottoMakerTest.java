@@ -9,13 +9,13 @@ public class LottoMakerTest {
 
     @Test
     public void 로또에6개숫자가들어가는지TEST() {
-        assertEquals(6, lottomaker.makeLotto().getLottoNumbers().length);
+        assertEquals(6, lottomaker.makeLotto().getLottoNumbers().size());
     }
 
     @Test
     public void 로또숫자가45이하인숫자인지TEST() {
         for (int i = 0; i < 6; i++) {
-            assertEquals(lottomaker.makeLotto().getLottoNumbers()[i] < 46, true);
+            assertEquals(lottomaker.makeLotto().getLottoNumbers().get(i) < 46, true);
         }
     }
 

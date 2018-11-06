@@ -19,10 +19,10 @@ public class OutputView {
     private static String printLotto(Lotto lotto) {
         StringBuilder lottoNumbers = new StringBuilder();
 
-        lottoNumbers.append("[").append(lotto.getLottoNumbers()[0]);
+        lottoNumbers.append("[").append(lotto.getLottoNumbers().get(0));
 
-        for (int i = 1; i < lotto.getLottoNumbers().length; i++) {
-            lottoNumbers.append(", ").append(lotto.getLottoNumbers()[i]);
+        for (int i = 1; i < lotto.getLottoNumbers().size(); i++) {
+            lottoNumbers.append(", ").append(lotto.getLottoNumbers().get(i));
         }
         lottoNumbers.append("]");
 

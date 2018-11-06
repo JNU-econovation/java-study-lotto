@@ -1,13 +1,15 @@
 package model;
 
-public class Lotto {
-    private int[] lottoNumbers;
+import java.util.List;
 
-    public Lotto(int[] lottoNumbers) {
+public class Lotto {
+    private List<Integer> lottoNumbers;
+
+    public Lotto(List lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public int[] getLottoNumbers() {
+    public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }
 }

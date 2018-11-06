@@ -1,6 +1,6 @@
-package model;
+package util;
 
-public class Converter {
+public class StringConverter {
 
     public static int[] splitNumbers(String input) {
         String[] numbers = input.split(",");

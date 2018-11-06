@@ -1,6 +1,8 @@
 package model;
 
 import dto.WinningCheckerDTO;
+import util.StringConverter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public class WinningChecker {
 
     public void checkWinningLotto(List<Lotto> lottoList, String winningNumbers, int money) {
         for (int i = 0; i < lottoList.size(); i++) {
-            adaptWinningList(checkCorrectCounts(lottoList.get(i), Converter.splitNumbers(winningNumbers)));
+            adaptWinningList(checkCorrectCounts(lottoList.get(i), StringConverter.splitNumbers(winningNumbers)));
         }
 
         calculateProfitRate(money);
@@ -30,11 +32,11 @@ public class WinningChecker {
         return correctCounts;
     }
 
-    private static List convertArrayToArrayList(int[] numbers) {
+    private static List convertArrayToArrayList(List numbers) {
         List convertedList = new ArrayList();
 
-        for (int i = 0; i < numbers.length; i++) {
-            convertedList.add(numbers[i]);
+        for (int i = 0; i < numbers.size(); i++) {
+            convertedList.add(numbers.get(i));
         }
         return convertedList;
     }

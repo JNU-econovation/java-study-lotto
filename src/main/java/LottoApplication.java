@@ -6,15 +6,15 @@ import view.OutputView;
 
 public class LottoApplication {
     private static LottoMaker lottoMaker = new LottoMaker();
-    private static WinningChecker lottoChecker = new WinningChecker();
+    private static WinningChecker winningChecker = new WinningChecker();
 
     public static void main(String[] args) {
         int money = InputView.inputPayment();
-        LottoListDTO lottoList = lottoMaker.makeLottoList(money).toLottoListDTO();
-        OutputView.getPurchaseResult(lottoList);
+        LottoListDTO lottoListDTO = lottoMaker.makeLottoList(money).toLottoListDTO();
+        OutputView.getPurchaseResult(lottoListDTO);
 
         String winningNumbers = InputView.inputWinningNumbers();
-        lottoChecker.checkWinningLotto(lottoList.getLottoList(), winningNumbers, money);
-        OutputView.getWinningResult(lottoChecker.toLottoCheckerDTO());
+        winningChecker.checkWinningLotto(lottoListDTO.getLottoList(), winningNumbers, money);
+        OutputView.getWinningResult(winningChecker.toLottoCheckerDTO());
     }
 }
