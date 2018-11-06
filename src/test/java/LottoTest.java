@@ -1,9 +1,8 @@
 import static junit.framework.TestCase.assertEquals;
-
-import Model.LottoMachine;
-import Model.LottoStore;
-import Model.Result;
-import Utils.SearchElement;
+import model.LottoMachine;
+import model.LottoStore;
+import model.Result;
+import utils.SearchElement;
 import org.junit.Test;
 
 public class LottoTest {
@@ -25,7 +24,7 @@ public class LottoTest {
     public void 로또한개에서숫자하나찾기() {
         int lottoExample1[] = {1, 2, 3, 4, 5, 6};
         SearchElement observer = new SearchElement();
-        assertEquals(true, observer.searchIntegerElement(lottoExample1, 1));
+        assertEquals(true, observer.isIntegerElement(lottoExample1, 1));
     }
 
     @Test
