@@ -1,10 +1,10 @@
 import static junit.framework.TestCase.assertEquals;
+
 import model.LottoMachine;
 import model.LottoStore;
 import model.Result;
 import utils.SearchElement;
 import org.junit.Test;
-import view.InputView;
 
 public class LottoTest {
 

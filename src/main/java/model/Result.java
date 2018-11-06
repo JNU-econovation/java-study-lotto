@@ -2,7 +2,9 @@ package model;
 
 import utils.SearchElement;
 import view.InputView;
+
 import java.util.Arrays;
+
 import static utils.Splitor.stringToIntegerArray;
 
 
@@ -27,12 +29,13 @@ public class Result {
         this.myLottoResult = new int[myLottos.length];
     }
 
-    public Result(LottoStore lottoStore, int myLottos[][], String winnintString){
+    public Result(LottoStore lottoStore, int myLottos[][], String winnintString) {
         this.inputMoney = lottoStore.inputMoney;
         this.myLottos = myLottos;
         this.myLottoResult = new int[myLottos.length];
         this.winningNumbers = stringToIntegerArray(winnintString);
     }
+
     public void checkMyLottos(String winningNumber) {
         setWinningNumbers(winningNumber);
         for (int myLottoSeq = 0; myLottoSeq < myLottos.length; myLottoSeq++) {
@@ -43,9 +46,10 @@ public class Result {
         }
     }
 
-    public void setWinningNumbers(String winningString){
+    public void setWinningNumbers(String winningString) {
         this.winningNumbers = stringToIntegerArray(winningString);
     }
+
     public void checkEachLotto(int myLottoSeq) {
         SearchElement observer = new SearchElement();
         sameNumberCounter = 0;
