@@ -9,15 +9,15 @@ public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static int readPurchaseAmount() {
+    public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static List<Integer> readWinningLotto() {
+    public static ArrayList<Integer> inputWinningLotto() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         String[] winningLottoString = scanner.nextLine().split(",");
-        List<Integer> winningLotto = new ArrayList<Integer>();
+        ArrayList<Integer> winningLotto = new ArrayList<Integer>();
         for (int i = 0; i < winningLottoString.length; i++) {
             winningLotto.add(Integer.parseInt(winningLottoString[i]));
         }

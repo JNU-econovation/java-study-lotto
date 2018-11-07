@@ -1,40 +1,59 @@
 package lotto.domain;
 
+import lotto.dto.LottoResult;
+
 import java.util.*;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.function.ToIntFunction;
 
 public class LottoApplication {
-    private int numberOfLotto;
+
     private int[] allLottoNumbers;
-    private int LOTTO_RANGE = 45;
+    private final int LOTTO_RANGE = 45;
     private float grossProfitRate;
-    List<Lotto> Lottos;
+    List<Lotto> LottoList;
+    LottoResult lottoResult;
+    HashMap<Integer, Integer> winningStatistic;
 
-    public LottoApplication(int purchaseAmount) {
-        numberOfLotto = purchaseAmount / 1000;
+    public LottoApplication() {
+        lottoResult = new LottoResult();
 
+        allLottoNumbers = new int[LOTTO_RANGE];
         for (int i = 0; i < LOTTO_RANGE; i++) {
             allLottoNumbers[i] = i+1;
         }
     }
 
-    public List<Lotto> startApplication(int numberOfLotto) {
+    public List<Lotto> enterPurchaseMoney(int purchaseAmount) {
+        int numberOfLotto = purchaseAmount / 1000;
         for (int i = 0; i < numberOfLotto; i++) {
-            Lottos.add(buyLotto());
+            LottoList.add(generateLotto());
         }
-        return Lottos;
+        return LottoList;
     }
 
-    public Lotto buyLotto() {
+    public Lotto generateLotto() {
         Collections.shuffle(Arrays.asList(allLottoNumbers));
-//        Collections.sort(allLottoNumbers, new Ascending());
-        // Collections.sort() 타입 맞추기
         return new Lotto(allLottoNumbers);
     }
 
+    public HashMap<Integer, Integer> checkGrossProfitRate(List<Lotto> LottoList, ArrayList<Integer> winningLotto) {
+        for (int i = 0; i < LottoList.size(); i++) {
+            sortMatches(LottoList.get(i), winningLotto);
+        }
+
+        return winningStatistic;
+    }
+
+    private void sortMatches(Lotto lotto, ArrayList<Integer> winningLotto) {
+        switch (lotto.checkMatches(winningLotto)) {
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+        }
+    }
 
 }
