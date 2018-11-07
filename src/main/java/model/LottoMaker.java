@@ -8,7 +8,7 @@ public class LottoMaker {
     private static final int BOUND_NUMBER = 46;
     private static final int NUMBER_PER_LOTTO = 6;
 
-    private static List makeNumbersInRange() {
+    private List makeNumbersInRange() {
         List<Integer> numbers = new ArrayList();
         for (int i = 1; i < BOUND_NUMBER; i++) {
             numbers.add(i);
@@ -16,7 +16,7 @@ public class LottoMaker {
         return numbers;
     }
 
-    private static List<Integer> shuffleNumbers(List<Integer> numbers) {
+    private List<Integer> shuffleNumbers(List<Integer> numbers) {
         Collections.shuffle(numbers);
 
         List<Integer> shuffledNumbers = new ArrayList();
@@ -26,7 +26,7 @@ public class LottoMaker {
         return shuffledNumbers;
     }
 
-    private static List sortNumbers(List<Integer> numbers) {
+    private List sortNumbers(List<Integer> numbers) {
         List sortedNumbers = new ArrayList();
 
         Collections.sort(numbers);
@@ -43,7 +43,7 @@ public class LottoMaker {
         return lottoList;
     }
 
-    public static Lotto makeLotto() {
+    public Lotto makeLotto() {
         return new Lotto(sortNumbers(shuffleNumbers(makeNumbersInRange())));
     }
 }
