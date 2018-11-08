@@ -13,8 +13,7 @@ public class LottoApplication {
         LottoListDTO lottoListDTO = lottoMaker.makeLottoList(money).toLottoListDTO();
         OutputView.getPurchaseResult(lottoListDTO);
 
-        String winningNumbers = InputView.inputWinningNumbers();
-        winningChecker.checkWinningLotto(lottoListDTO.getLottoList(), winningNumbers, money);
+        winningChecker.checkWinningLotto(lottoListDTO.getLottoList(), InputView.inputWinningNumbers(), money);
         OutputView.getWinningResult(winningChecker.toLottoCheckerDTO());
     }
 }

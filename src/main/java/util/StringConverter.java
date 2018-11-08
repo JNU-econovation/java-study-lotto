@@ -3,7 +3,7 @@ package util;
 public class StringConverter {
 
     public static int[] splitNumbers(String input) {
-        String[] numbers = input.split(",");
+        String[] numbers = input.split(", ");
         return convertStringToInt(numbers);
     }
 
