@@ -4,18 +4,23 @@ import lotto.domain.LottoApplication;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LottoApplicationTest {
+import static junit.framework.TestCase.assertEquals;
 
-    private LottoApplication lottoApplication;
+public class LottoApplicationTest {
+    private LottoApplication lotto;
 
     @Before
     public void setup() {
-        lottoApplication = new LottoApplication(14000);
+        lotto = new LottoApplication();
     }
 
     @Test
-    public void startApplicationTest() {
-        lottoApplication.enterPurchaseMoney(14);
+    public void buyLottoTest_로또개수() {
+        assertEquals(14, lotto.buyLotto(14000).getLottoList().size());
+    }
 
+    @Test
+    public void generateLottoTest_생성된로또크기() {
+        assertEquals(6, lotto.generateLotto().toLottoDTO().getLottoNumbers().size());
     }
 }

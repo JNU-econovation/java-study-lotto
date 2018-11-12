@@ -1,59 +1,81 @@
 package lotto.domain;
 
-import lotto.dto.LottoResult;
+import lotto.dto.LottoListDTO;
+import lotto.dto.WinningStatisticDTO;
+import lotto.util.PrizeMoneyEnum;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoApplication {
 
-    private int[] allLottoNumbers;
     private final int LOTTO_RANGE = 45;
-    private float grossProfitRate;
-    List<Lotto> LottoList;
-    LottoResult lottoResult;
-    HashMap<Integer, Integer> winningStatistic;
+    private final int LOTTO_PRICE = 1000;
+    private final int LOTTO_ENTRY_COUNT = 6;
+
+    private List<Integer> totalLottoNumber;
+    private List<Lotto> LottoList;
+    private int[] MatchCount = new int[LOTTO_ENTRY_COUNT+1];
+
+    public PrizeMoneyEnum prizeMoney;
 
     public LottoApplication() {
-        lottoResult = new LottoResult();
+        totalLottoNumber = new ArrayList<>();
+        LottoList = new ArrayList<>();
 
-        allLottoNumbers = new int[LOTTO_RANGE];
         for (int i = 0; i < LOTTO_RANGE; i++) {
-            allLottoNumbers[i] = i+1;
+            totalLottoNumber.add(i+1);
         }
     }
 
-    public List<Lotto> enterPurchaseMoney(int purchaseAmount) {
-        int numberOfLotto = purchaseAmount / 1000;
+    public LottoListDTO buyLotto(int purchaseAmount) {
+        int numberOfLotto = purchaseAmount / LOTTO_PRICE;
         for (int i = 0; i < numberOfLotto; i++) {
             LottoList.add(generateLotto());
         }
-        return LottoList;
+        return new LottoListDTO(LottoList.stream().map(lotto -> lotto.toLottoDTO()).collect(Collectors.toList()));
     }
 
     public Lotto generateLotto() {
-        Collections.shuffle(Arrays.asList(allLottoNumbers));
-        return new Lotto(allLottoNumbers);
+        Collections.shuffle(totalLottoNumber);
+        return new Lotto(totalLottoNumber.stream().limit(LOTTO_ENTRY_COUNT).collect(Collectors.toList()));
     }
 
-    public HashMap<Integer, Integer> checkGrossProfitRate(List<Lotto> LottoList, ArrayList<Integer> winningLotto) {
+    public WinningStatisticDTO checkWinning(ArrayList<Integer> winningLotto) {
+        return new WinningStatisticDTO(checkWinningLotto(winningLotto), calculateGrossProfitRate());
+    }
+
+    public int[] checkWinningLotto(ArrayList<Integer> winningLotto) {
         for (int i = 0; i < LottoList.size(); i++) {
             sortMatches(LottoList.get(i), winningLotto);
         }
-
-        return winningStatistic;
+        return MatchCount;
     }
 
     private void sortMatches(Lotto lotto, ArrayList<Integer> winningLotto) {
         switch (lotto.checkMatches(winningLotto)) {
             case 3:
+                MatchCount[3]++;
                 break;
             case 4:
+                MatchCount[4]++;
                 break;
             case 5:
+                MatchCount[5]++;
                 break;
             case 6:
+                MatchCount[6]++;
                 break;
         }
     }
 
+    public float calculateGrossProfitRate() {
+        float grossProfit = 0;
+        float purchaseAmount = LOTTO_PRICE * LottoList.size();
+        for (int i = 3; i <= 6; i++) {
+            String Match_Number = "MATCH_" + Integer.toString(i);
+            grossProfit += MatchCount[i] * Integer.parseInt(this.prizeMoney.valueOf(Match_Number).getPrizeMoney());
+        }
+        return (grossProfit / purchaseAmount) * 100;
+    }
 }
