@@ -1,4 +1,6 @@
+import jdk.internal.util.xml.impl.Input;
 import model.LottoMachine;
+import model.Result;
 import view.InputView;
 import view.ResultView;
 
@@ -7,8 +9,9 @@ public class Main {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
         LottoMachine lottoMachine = new LottoMachine();
-
         lottoMachine.buyLotto(inputView.purchaseLotto());
         resultView.printLottos(lottoMachine.lottoDTO());
+        Result result = new Result(resultView.inputWinningNumbers(), lottoMachine.lottoDTO().getLottos());
+
     }
 }

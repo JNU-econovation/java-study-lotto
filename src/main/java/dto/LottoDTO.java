@@ -11,7 +11,7 @@ public class LottoDTO {
         this.lottos = lottos;
     }
 
-    public List getLottos() {
+    public List<Lotto> getLottos() {
         return lottos;
     }
 }

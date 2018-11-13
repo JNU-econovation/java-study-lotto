@@ -9,6 +9,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

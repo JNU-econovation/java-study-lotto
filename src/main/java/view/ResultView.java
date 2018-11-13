@@ -18,4 +18,5 @@ public class ResultView {
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }
+
 }
