@@ -1,25 +1,11 @@
+/*
 import static junit.framework.TestCase.assertEquals;
 
 import model.LottoMachine;
-import model.LottoStore;
-import model.Result;
 import utils.SearchElement;
 import org.junit.Test;
 
 public class LottoTest {
-
-    LottoStore lottoStore = new LottoStore(2000);
-
-    @Test
-    public void 로또기계번호생성() {
-        LottoMachine lottoMachine = new LottoMachine();
-        assertEquals(6, lottoMachine.generateLotto().length);
-    }
-
-    @Test
-    public void 로또가게에서금액만큼로또구매() {
-        assertEquals(2, lottoStore.buyLotto().length);
-    }
 
     @Test
     public void 로또한개에서숫자하나찾기() {
@@ -63,4 +49,4 @@ public class LottoTest {
         result.checkMyLottos(winningString);
         assertEquals(result.winningMoney / result.inputMoney, result.winningMoney / result.inputMoney);
     }
-}
+}*/

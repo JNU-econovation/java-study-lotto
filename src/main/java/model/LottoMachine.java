@@ -1,7 +1,8 @@
 package model;
 
+import dto.LottoDTO;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,37 +10,33 @@ public class LottoMachine {
 
     static final int MINIMUMLOTTONUMBER = 1;
     static final int MAXIMUMLOTTONUMBER = 45;
-    static final int NUMBEROFLOTTOELEMENT = 6;
+    static final int NUMBER_OF_LOTTO_ELEMENT = 6;
+    static final int LOTTO_PRICE = 1000;
 
-    List<Integer> lottoNumbers = new ArrayList<>();
-    public int numberOfOrder;
-    public int lottos[][] = null;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public LottoMachine() {
     }
 
-    public LottoMachine(int numberOfOrder) {
-        this.numberOfOrder = numberOfOrder;
+    public void buyLotto(int inputMoney) {
+        for (int i = 0; i < inputMoney / LOTTO_PRICE; i++) {
+            lottos.add(new Lotto(generateLotto()));
+        }
     }
 
-    public int[][] printOutLottos() {
-        lottos = new int[numberOfOrder][];
-        for (int i = 0; i < numberOfOrder; i++) {
-            lottos[i] = generateLotto();
+    public List<Integer> generateLotto() {
+        List<Integer> shuffleNumbers = new ArrayList<Integer>();
+        List<Integer> numbers;
+        for (int i = MINIMUMLOTTONUMBER; i <= MAXIMUMLOTTONUMBER; i++) {
+            shuffleNumbers.add(i);
         }
-        return lottos;
+        Collections.shuffle(shuffleNumbers);
+        numbers = shuffleNumbers.subList(0, NUMBER_OF_LOTTO_ELEMENT);
+        Collections.sort(numbers);
+        return numbers;
     }
 
-    public int[] generateLotto() {
-        int[] selectedLottoNumbers = new int[NUMBEROFLOTTOELEMENT];
-        for (int i = MINIMUMLOTTONUMBER; i < MAXIMUMLOTTONUMBER; i++) {
-            lottoNumbers.add(i);
-        }
-        Collections.shuffle(lottoNumbers);
-        for (int i = 0; i < NUMBEROFLOTTOELEMENT; i++) {
-            selectedLottoNumbers[i] = this.lottoNumbers.get(i).intValue();
-        }
-        Arrays.sort(selectedLottoNumbers);
-        return selectedLottoNumbers;
+    public LottoDTO lottoDTO() {
+        return new LottoDTO(lottos);
     }
 }
