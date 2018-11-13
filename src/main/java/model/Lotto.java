@@ -1,5 +1,6 @@
 package model;
 
+import dto.LottoDTO;
 import utils.AutoTicketGenerator;
 import utils.ManualTicketGenerator;
 
@@ -12,11 +13,15 @@ public class Lotto {
         this.ticket = AutoTicketGenerator.issue();
     }
 
-    public Lotto(String s) {
-        this.ticket = ManualTicketGenerator.issue(s);
+    public Lotto(String manualBalls) {
+        this.ticket = ManualTicketGenerator.issue(manualBalls);
     }
 
     public List<LottoNo> getTicket() {
         return ticket;
+    }
+
+    public LottoDTO toLottoDTO() {
+        return new LottoDTO(ticket);
     }
 }

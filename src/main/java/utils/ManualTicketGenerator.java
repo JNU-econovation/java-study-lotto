@@ -7,21 +7,17 @@ import java.util.List;
 
 public class ManualTicketGenerator {
 
-    public static List<LottoNo> issue(String s) {
-        List<LottoNo> numbers = new ArrayList<>();
-        //예외처리코드 추가하기
+    public static List<LottoNo> issue(String manualBalls) {
+        List<LottoNo> ticket = new ArrayList<>();
+        String[] manualBallList = manualBalls.split(", ");
+        if (manualBallList.length != 6) throw new RuntimeException();
 
-        for (String number : s.split(", ")) {
-            numbers.add(new LottoNo(Integer.parseInt(number)));
+        String temp = "";
+        for (String manualBall : manualBallList) {
+            if (temp.equals(manualBall)) throw new RuntimeException();
+            ticket.add(new LottoNo(Integer.parseInt(manualBall)));
+            temp = manualBall;
         }
-        return numbers;
+        return ticket;
     }
-    /*
-    public static List<LottoNo> toList(String s) {
-        for (String number : s.split(", ")) {
-            numbers.add(new LottoNo(Integer.parseInt(number)));
-        }
-        return numbers;
-    }
-    */
 }

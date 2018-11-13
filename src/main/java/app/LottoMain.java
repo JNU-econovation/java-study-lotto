@@ -8,9 +8,15 @@ import view.ResultView;
 public class LottoMain {
 
     public static void main(String[] args) {
-        LottoGame lottoGame = new LottoGame(InputView.readMoney());
-        Result result = new Result(InputView.readWinningNumbers(), lottoGame.toLottoDTO());
-        result.update();
+        int money = InputView.readMoney();
+        int manualCount = InputView.readManualCount();
+        LottoGame lottoGame = new LottoGame(money, manualCount);
+        Result result;
+
+        lottoGame.buyManualTickets(InputView.readManualBalls(manualCount));
+        lottoGame.buyAutoTickets();
+        ResultView.printTickets(lottoGame.toLottoGameDTO());
+        result = new Result(InputView.readWinningNumbers(), InputView.readBonusBall(), lottoGame);
         ResultView.printResult(result.toResultDTO());
     }
 }

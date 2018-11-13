@@ -2,9 +2,9 @@ package utils;
 
 import model.LottoNo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class AutoTicketGenerator {
     private final static int MIN_NUMBER = 1;
@@ -20,13 +20,14 @@ public class AutoTicketGenerator {
     }
 
     public static List<LottoNo> issue() {
-        List<LottoNo> numbers;
+        List<LottoNo> ticket;
         List<LottoNo> balls = createBalls();
 
         Collections.shuffle(balls);
-        numbers = balls.subList(0, NUMBER_OF_ENTRY);
-        Collections.sort(numbers);
+        ticket = balls.subList(0, NUMBER_OF_ENTRY);
 
-        return numbers;
+        return ticket.stream()
+                .sorted(Comparator.comparing(LottoNo::getNumber))
+                .collect(Collectors.toList());
     }
 }

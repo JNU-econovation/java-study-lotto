@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningLotto {
-    private List<LottoNo> winningNumber;
+    private List<LottoNo> winningTicket;
 
-    public WinningLotto(String s) {
-        winningNumber = new ArrayList<>();
-        for (String number : s.split(", ")) {
-            winningNumber.add(new LottoNo(Integer.parseInt(number)));
+    public WinningLotto(String winningNumbers) {
+        winningTicket = new ArrayList<>();
+        for (String winningNumber : winningNumbers.split(", ")) {
+            winningTicket.add(new LottoNo(Integer.parseInt(winningNumber)));
         }
     }
 
+    public List<LottoNo> getWinningTicket() {
+        return winningTicket;
+    }
 }

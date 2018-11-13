@@ -1,18 +1,20 @@
 package dto;
 
-import java.util.List;
+import model.Rank;
+
+import java.util.Map;
 
 public class ResultDTO {
-    private List<Integer> statistics;
+    private Map<Rank, Integer> winStatistics;
     private double profit;
 
-    public ResultDTO(List<Integer> statistics, double profit) {
-        this.statistics = statistics;
+    public ResultDTO(Map<Rank, Integer> winStatistics, double profit) {
+        this.winStatistics = winStatistics;
         this.profit = profit;
     }
 
-    public List<Integer> getStatistics() {
-        return statistics;
+    public Map<Rank, Integer> getWinStatistics() {
+        return winStatistics;
     }
 
     public double getProfit() {

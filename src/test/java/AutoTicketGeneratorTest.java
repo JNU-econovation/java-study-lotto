@@ -2,23 +2,29 @@ import model.LottoNo;
 import org.junit.Test;
 import utils.AutoTicketGenerator;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AutoTicketGeneratorTest {
 
     @Test
-    public void issue_각기다른_정수값_6개() {
-        List<LottoNo> numbers = AutoTicketGenerator.issue();
+    public void createBalls_1부터_45까지_로또공_생성() {
+        List<LottoNo> balls = AutoTicketGenerator.createBalls();
+        for (LottoNo ball : balls) {
+            assertThat(ball.getNumber()).isBetween(1, 45);
+        }
+        assertThat(balls.size()).isEqualTo(45);
+    }
+
+    @Test
+    public void issue_로또번호가_중복되지않게_티켓발급() {
+        List<LottoNo> ticket = AutoTicketGenerator.issue();
         Set<Integer> set = new HashSet<>();
 
-        for (LottoNo number : numbers) {
-            set.add(number.getNumber());
+        for (LottoNo lottoNo : ticket) {
+            set.add(lottoNo.getNumber());
         }
-
         assertThat(set.size()).isEqualTo(6);
     }
 }

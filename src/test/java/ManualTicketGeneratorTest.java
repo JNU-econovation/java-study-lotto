@@ -2,24 +2,20 @@ import model.LottoNo;
 import org.junit.Test;
 import utils.ManualTicketGenerator;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ManualTicketGeneratorTest {
 
     @Test
-    public void issue_각기다른_정수값_6개() {
-        List<LottoNo> numbers = ManualTicketGenerator.issue("1, 2, 3, 4, 5, 6");
-        Set<Integer> set = new HashSet<>();
-
-        for (LottoNo number : numbers) {
-            set.add(number.getNumber());
+    public void issue_입력한대로_발급() {
+        List<LottoNo> list1 = ManualTicketGenerator.issue("1, 2, 3, 4, 5, 6");
+        List<LottoNo> list2 = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            list2.add(new LottoNo(i));
         }
-
-        assertThat(set.size()).isEqualTo(6);
+        assertThat(list1).isEqualTo(list2);
     }
 
     @Test(expected = RuntimeException.class)

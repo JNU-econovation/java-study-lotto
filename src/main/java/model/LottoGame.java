@@ -1,32 +1,39 @@
 package model;
 
-import dto.LottoDTO;
-import view.ResultView;
+import dto.LottoGameDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
     private static final int PRICE = 1000;
-    private List<Lotto> lotteries;
+    private List<Lotto> lottoList;
+    private int autoCount;
+    private int manualCount;
 
-    public LottoGame(int money) {
-        int count = money / PRICE;
-        this.lotteries = buyTickets(count);
-        ResultView.printBuyTickets(count);
+    public LottoGame(int money, int manualCount) {
+        lottoList = new ArrayList<>();
+        autoCount = money / PRICE - manualCount;
+        this.manualCount = manualCount;
     }
 
-    public List<Lotto> buyTickets(int count) {
-        List<Lotto> lotteries = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            lotteries.add(new Lotto());
-            System.out.println(lotteries.get(i).getTicket());
+    public void buyManualTickets(List<String> manualBallsList) {
+        for (String manualBalls : manualBallsList) {
+            lottoList.add(new Lotto(manualBalls));
         }
-        return lotteries;
     }
 
-    public LottoDTO toLottoDTO() {
-        return new LottoDTO(lotteries);
+    public void buyAutoTickets() {
+        for (int i = 0; i < autoCount; i++) {
+            lottoList.add(new Lotto());
+        }
+    }
+
+    public List<Lotto> getLottoList() {
+        return lottoList;
+    }
+
+    public LottoGameDTO toLottoGameDTO() {
+        return new LottoGameDTO(lottoList, autoCount, manualCount);
     }
 }

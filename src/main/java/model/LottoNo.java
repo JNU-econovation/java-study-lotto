@@ -2,21 +2,16 @@ package model;
 
 import java.util.Objects;
 
-public class LottoNo implements Comparable<LottoNo> {
+public class LottoNo {
     private int number;
 
     public LottoNo(int number) {
-        // number가 1~45가 아닐 경우 예외 처리하기
+        if (number < 1 || number > 45) throw new RuntimeException();
         this.number = number;
     }
 
     public int getNumber() {
         return number;
-    }
-
-    @Override
-    public int compareTo(LottoNo o) {
-        return number - o.getNumber();
     }
 
     @Override
@@ -30,5 +25,10 @@ public class LottoNo implements Comparable<LottoNo> {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(number);
     }
 }
