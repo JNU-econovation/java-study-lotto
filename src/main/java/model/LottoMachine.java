@@ -12,7 +12,6 @@ public class LottoMachine {
     static final int MAXIMUMLOTTONUMBER = 45;
     static final int NUMBER_OF_LOTTO_ELEMENT = 6;
     static final int LOTTO_PRICE = 1000;
-
     private List<Lotto> lottos = new ArrayList<>();
 
     public LottoMachine() {

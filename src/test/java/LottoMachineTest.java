@@ -1,4 +1,3 @@
-import dto.LottoDTO;
 import model.LottoMachine;
 import org.junit.Test;
 
