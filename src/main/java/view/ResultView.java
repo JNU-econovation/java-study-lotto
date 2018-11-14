@@ -4,6 +4,7 @@ package view;
 import dto.LottoDTO;
 import dto.ResultDTO;
 import model.RankInformation;
+
 import java.util.Scanner;
 
 public class ResultView {
@@ -30,6 +31,6 @@ public class ResultView {
                     .append(resultDTO.getMatchingCounts()[i]);
             System.out.println(sentence);
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.", resultDTO.getProfit()*100);
+        System.out.printf("총 수익률은 %.1f%%입니다.", resultDTO.getProfit() * 100);
     }
 }

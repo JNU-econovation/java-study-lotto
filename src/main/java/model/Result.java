@@ -11,13 +11,17 @@ public class Result {
     private double profit;
     private int matchingCounts[] = new int[7];
 
+    public Result(String inputString) {
+        this.winningNumbers = Splitor.stringToIntegerArray(inputString);
+    }
+
     public Result(String inputString, LottoMachine lottoMachine) {
         this.winningNumbers = Splitor.stringToIntegerArray(inputString);
         getMatchingCount(lottoMachine.lottoDTO().getLottos());
         calculateProfit(lottoMachine.lottoDTO());
     }
 
-    private void getMatchingCount(List<Lotto> lotto) {
+    public void getMatchingCount(List<Lotto> lotto) {
         int counter = 0;
         for (int i = 0; i < lotto.size(); i++) {
             counter = 0;
@@ -26,21 +30,21 @@ public class Result {
         }
     }
 
-    private int getEachMatchingCount(Lotto lotto, List winnungNumber) {
+    public int getEachMatchingCount(Lotto lotto, List winnungNumber) {
         int count = 0;
         for (int i = 0; i < winnungNumber.size(); i++)
-            count += isMatched(lotto, (int)winnungNumber.get(i));
+            count += isMatched(lotto, (int) winnungNumber.get(i));
         return count;
     }
 
-    private int isMatched(Lotto lotto, int index) {
+    public int isMatched(Lotto lotto, int index) {
         if (lotto.getLottoNumbers().contains(index))
             return 1;
         else
             return 0;
     }
 
-    private void calculateProfit(LottoDTO lottoDTO) {
+    public void calculateProfit(LottoDTO lottoDTO) {
         double winningMoney = 0;
         for (int i = 0; i < matchingCounts.length; i++)
             winningMoney += RankInformation.getWinningMoney(i) * matchingCounts[i];

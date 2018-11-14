@@ -10,7 +10,7 @@ public class Main {
         LottoMachine lottoMachine = new LottoMachine();
         lottoMachine.buyLotto(inputView.purchaseLotto());
         resultView.printLottos(lottoMachine.lottoDTO());
-        Result result = new Result(resultView.inputWinningNumbers(),lottoMachine);
+        Result result = new Result(resultView.inputWinningNumbers(), lottoMachine);
         resultView.printProfit(result.resultDTO());
     }
 }

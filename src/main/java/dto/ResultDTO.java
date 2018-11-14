@@ -21,7 +21,7 @@ public class ResultDTO {
         return matchingCounts;
     }
 
-    public double getProfit(){
+    public double getProfit() {
         return profit;
     }
 }
