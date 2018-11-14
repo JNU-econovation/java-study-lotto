@@ -3,7 +3,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class StringCalculatorTest {
+    /*
     private StringCalculator cal;
 
     @Before
@@ -40,5 +44,25 @@ public class StringCalculatorTest {
     @Test(expected = RuntimeException.class)
     public void add_negative() throws Exception {
         cal.add("-1,2,3");
+    }
+*/
+    @Test
+    public void test(){
+        String[] a = {"aaa", "bbb", "c"};
+
+        Arrays.stream(a).forEach(s -> System.out.print(s+" "));
+        Arrays.sort(a, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                int length1 = o1.length();
+                int length2 = o2.length();
+                if (length1 == length2){
+                    return o1.compareTo(o2);
+                }
+                return length1 - length2;
+            }
+        });
+
+        Arrays.stream(a).forEach(s -> System.out.print(s+" "));
     }
 }

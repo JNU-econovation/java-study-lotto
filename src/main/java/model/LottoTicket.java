@@ -1,46 +1,48 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class LottoTicket {
-    public static final int MAX_NUMBER = 6;
-    public static final int[] NUMBER = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-            23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45};
-    private List<Integer> numbers;
+    public static final int ENTRY_NUMBER = 6;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
+    public static final List<Number> BALL = new ArrayList<>();
+
+    static {
+        for (int i = MIN_NUMBER; i <= MAX_NUMBER; i++) {
+            BALL.add(new Number(i));
+        }
+    }
+
+    private List<Number> numbers = new ArrayList<>();
 
     public LottoTicket() {
-        makeAutoNumber();
-    }
-
-    public LottoTicket(String numberString) {
-        makeManualNumber(numberString);
-    }
-
-    private void makeAutoNumber() {
-        ArrayList<Integer> ball = new ArrayList<>();
-        for (int number : NUMBER) {
-            ball.add(number);
-        }
-        Collections.shuffle(ball);
-        numbers = ball.subList(0, MAX_NUMBER);
-        sort();
-    }
-
-    private void makeManualNumber(String numberString) {
-        StringTokenizer stringTokenizer = new StringTokenizer(numberString, ", ");
-        while (stringTokenizer.hasMoreTokens()) {
-            numbers.add(Integer.parseInt(stringTokenizer.nextToken()));
-        }
-        sort();
-    }
-
-    public void sort() {
+        makeAutoTicket();
         Collections.sort(numbers);
     }
 
-    public boolean isContain(int i) {
-        return numbers.contains(i);
+    public LottoTicket(String numberString) {
+        makeManualTicket(numberString);
+        Collections.sort(numbers);
     }
+
+    private void makeManualTicket(String numberString) {
+        StringTokenizer stringTokenizer = new StringTokenizer(numberString, ", ");
+        while(stringTokenizer.hasMoreTokens()){
+            numbers.add(new Number(Integer.parseInt(stringTokenizer.nextToken())));
+        }
+    }
+
+    private void makeAutoTicket() {
+        Collections.shuffle(BALL);
+        for (int i = 0; i < ENTRY_NUMBER; i++) {
+            numbers.add(BALL.get(i));
+        }
+    }
+
 
     @Override
     public String toString() {
@@ -48,10 +50,18 @@ public class LottoTicket {
 
         stringBuilder.append("[");
         for (int i = 0; i < numbers.size() - 1; i++) {
-            stringBuilder.append(String.format("%d, ", numbers.get(i)));
+            stringBuilder.append(String.format("%d, ", numbers.get(i).toInteger()));
         }
-        stringBuilder.append(numbers.get(numbers.size() - 1) + "]");
+        stringBuilder.append(numbers.get(numbers.size() - 1).toInteger() + "]");
 
         return stringBuilder.toString();
+    }
+
+    public boolean hasNumber(Number number) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if(numbers.get(i).equals(number)) return true;
+        }
+
+        return false;
     }
 }
