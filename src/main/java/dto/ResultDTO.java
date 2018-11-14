@@ -4,17 +4,24 @@ import java.util.List;
 
 public class ResultDTO {
     private List<Integer> winningNumbers;
-    private int matchingCount;
+    private int[] matchingCounts;
+    private double profit;
 
-    public ResultDTO(List<Integer> winningNumbers, int matchingCount) {
+    public ResultDTO(List<Integer> winningNumbers, int[] matchingCounts, double profit) {
         this.winningNumbers = winningNumbers;
-        this.matchingCount = matchingCount;
+        this.matchingCounts = matchingCounts;
+        this.profit = profit;
     }
 
     public List getWinningNumbers() {
         return winningNumbers;
     }
-    public int getMatchingCount(){
-        return matchingCount;
+
+    public int[] getMatchingCounts() {
+        return matchingCounts;
+    }
+
+    public double getProfit(){
+        return profit;
     }
 }

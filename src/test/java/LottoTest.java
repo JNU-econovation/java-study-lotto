@@ -7,7 +7,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class LottoTest {
     @Test
-    public void 리스트반환(){
+    public void 리스트반환() {
         LottoMachine lottoMachine = new LottoMachine();
         lottoMachine.buyLotto(1000);
         assertEquals(6, lottoMachine.lottoDTO()

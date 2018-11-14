@@ -2,7 +2,8 @@ package view;
 
 
 import dto.LottoDTO;
-
+import dto.ResultDTO;
+import model.RankInformation;
 import java.util.Scanner;
 
 public class ResultView {
@@ -19,4 +20,16 @@ public class ResultView {
         return scanner.next();
     }
 
+    public void printProfit(ResultDTO resultDTO) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        for (int i = 3; i < 7; i++) {
+            StringBuilder sentence = new StringBuilder();
+            sentence.append(i).append("개 일치 (")
+                    .append(RankInformation.getWinningMoney(i)).append("원)- ")
+                    .append(resultDTO.getMatchingCounts()[i]);
+            System.out.println(sentence);
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.", resultDTO.getProfit()*100);
+    }
 }

@@ -1,41 +1,53 @@
 package model;
 
+import dto.LottoDTO;
 import dto.ResultDTO;
+import utils.Splitor;
 
 import java.util.*;
 
 public class Result {
-    private List<Integer> winningNumbers = new ArrayList<>();
+    private List<Integer> winningNumbers;
     private double profit;
-    private int matchingCount;
+    private int matchingCounts[] = new int[7];
 
-    public Result(String winningNumbers, List<Lotto> lotto) {
-        for (String winningNumber : winningNumbers.split(", ")) {
-            this.winningNumbers.add(Integer.parseInt(winningNumber));
-        }
-        this.matchingCount = getMatchingCount(lotto);
+    public Result(String inputString, LottoMachine lottoMachine) {
+        this.winningNumbers = Splitor.stringToIntegerArray(inputString);
+        getMatchingCount(lottoMachine.lottoDTO().getLottos());
+        calculateProfit(lottoMachine.lottoDTO());
     }
 
-    public int getMatchingCount(List<Lotto> lotto) {
-        matchingCount = 0;
+    private void getMatchingCount(List<Lotto> lotto) {
+        int counter = 0;
         for (int i = 0; i < lotto.size(); i++) {
-            matchingCount += isMatched(lotto.get(i), winningNumbers.get(i));
+            counter = 0;
+            counter += getEachMatchingCount(lotto.get(i), winningNumbers);
+            matchingCounts[counter]++;
         }
-        return matchingCount;
     }
 
-    public int isMatched(Lotto lotto, int winnungNumber) {
-        if (lotto.getLottoNumbers().contains(winnungNumber))
+    private int getEachMatchingCount(Lotto lotto, List winnungNumber) {
+        int count = 0;
+        for (int i = 0; i < winnungNumber.size(); i++)
+            count += isMatched(lotto, (int)winnungNumber.get(i));
+        return count;
+    }
+
+    private int isMatched(Lotto lotto, int index) {
+        if (lotto.getLottoNumbers().contains(index))
             return 1;
-        else return 0;
+        else
+            return 0;
     }
 
-    private double getProfit() {
-        int profit = 0;
+    private void calculateProfit(LottoDTO lottoDTO) {
+        double winningMoney = 0;
+        for (int i = 0; i < matchingCounts.length; i++)
+            winningMoney += RankInformation.getWinningMoney(i) * matchingCounts[i];
+        this.profit = winningMoney / (lottoDTO.getLottos().size() * 1000);
     }
 
     public ResultDTO resultDTO() {
-        return new ResultDTO(winningNumbers, matchingCount);
+        return new ResultDTO(winningNumbers, matchingCounts, profit);
     }
-
 }

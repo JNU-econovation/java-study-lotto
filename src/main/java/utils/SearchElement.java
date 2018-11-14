@@ -11,5 +11,4 @@ public class SearchElement {
         else
             return false;
     }
-
 }

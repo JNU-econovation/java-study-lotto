@@ -1,13 +1,15 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Splitor {
 
-    public static int[] stringToIntegerArray(String inputString) {
+    public static List stringToIntegerArray(String inputString) {
         String[] stringArray = inputString.split(",");
-        int[] returnArray = new int[stringArray.length];
-
-        for (int i = 0; i < returnArray.length; i++) {
-            returnArray[i] = Integer.parseInt(stringArray[i]);
+        List<Integer> returnArray = new ArrayList<>();
+        for (int i = 0; i < stringArray.length; i++) {
+            returnArray.add(Integer.parseInt(stringArray[i]));
         }
         return returnArray;
     }

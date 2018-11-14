@@ -17,6 +17,6 @@ public class ResultTest {
         lottoMachine.buyLotto(1000);
         Result result = new Result("0, 0, 0, 0, 0, 0");
         result.getMatchingCount(lottoMachine.lottoDTO().getLottos());
-        assertEquals(0, result.resultDTO().getMatchingCount());
+        assertEquals(0, result.resultDTO().getMatchingCounts());
     }
 }
