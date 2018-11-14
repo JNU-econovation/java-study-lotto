@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 public class LottoNo {
-    private int number;
+    private final int number;
 
     public LottoNo(int number) {
         if (number < 1 || number > 45) throw new RuntimeException();
