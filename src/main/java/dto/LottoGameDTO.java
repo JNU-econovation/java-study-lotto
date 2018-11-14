@@ -1,5 +1,7 @@
 package dto;
 
+import model.LottoTicket;
+
 import java.util.List;
 
 public class LottoGameDTO {
