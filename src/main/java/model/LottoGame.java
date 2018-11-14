@@ -18,9 +18,9 @@ public class LottoGame {
     }
 
     public void buyManualTickets(List<String> manualBallsList) {
-        for (String manualBalls : manualBallsList) {
-            lottoList.add(new Lotto(manualBalls));
-        }
+        manualBallsList.stream()
+                .map(s -> new Lotto(s))
+                .forEach(lottoList::add);
     }
 
     public void buyAutoTickets() {

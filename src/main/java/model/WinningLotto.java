@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
@@ -8,9 +9,9 @@ public class WinningLotto {
 
     public WinningLotto(String winningNumbers) {
         winningTicket = new ArrayList<>();
-        for (String winningNumber : winningNumbers.split(", ")) {
-            winningTicket.add(new LottoNo(Integer.parseInt(winningNumber)));
-        }
+        Arrays.asList(winningNumbers.split(", ")).stream()
+                .map(s -> new LottoNo(Integer.parseInt(s)))
+                .forEach(winningTicket::add);
     }
 
     public List<LottoNo> getWinningTicket() {
