@@ -28,25 +28,24 @@ public class LottoResult {
                 matchCount.remove(rank, matchCount.get(rank) + 1);
                 continue;
             }
-            if(rank != null) matchCount.put(rank, 1);
+            if (rank != null) matchCount.put(rank, 1);
         }
 
-        float earning = calculateEarnings(matchCount, lottoTickets.size()*lottoGameDTO.getTicketPrice());
+        float earning = calculateEarnings(matchCount, lottoTickets.size() * lottoGameDTO.getTicketPrice());
         return toLottoResultDTO(matchCount, earning);
     }
 
     public Rank checkMatch(LottoTicket lottoTicket) {
         int count = 0;
+        boolean matchBonus = false;
         for (int i = 0; i < NUMBER_OF_BALL; i++) {
             if (lottoTicket.hasNumber(winNumber.get(i))) count++;
         }
         if (count == 5) {
-            if (lottoTicket.hasNumber(winNumber.get(INDEX_OF_BONUS_BALL-1))) {
-                count++;
-                return Rank.SECOND;
-            }
+            if (lottoTicket.hasNumber(winNumber.get(INDEX_OF_BONUS_BALL - 1))) matchBonus = true;
         }
-        return Rank.match(count);
+
+        return Rank.match(count, matchBonus);
     }
 
     public float calculateEarnings(HashMap<Rank, Integer> matchCount, int inputMoney) {
