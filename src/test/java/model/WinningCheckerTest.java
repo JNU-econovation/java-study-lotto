@@ -1,7 +1,9 @@
 package model;
 
+import dto.WinningCheckerDTO;
 import org.junit.Test;
-import util.StringConverter;
+import util.Converter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,40 +14,65 @@ public class WinningCheckerTest {
 
     @Test
     public void 입력된당첨번호분리Test() {
-        assertEquals(6, StringConverter.splitNumbers("1, 2, 3, 4, 5, 6").length);
+        String input = "1, 2, 3, 4, 5, 6";
+        assertEquals(1, (int) Converter.splitNumbers(input).get(0));
+        assertEquals(2, (int) Converter.splitNumbers(input).get(1));
+        assertEquals(3, (int) Converter.splitNumbers(input).get(2));
+        assertEquals(4, (int) Converter.splitNumbers(input).get(3));
+        assertEquals(5, (int) Converter.splitNumbers(input).get(4));
+        assertEquals(6, (int) Converter.splitNumbers(input).get(5));
     }
 
     @Test
     public void 당첨번호로로또조회Test() {
-        List<Integer> lottoNumbers = new ArrayList();
-        lottoNumbers.add(3);
-        lottoNumbers.add(6);
-        lottoNumbers.add(9);
-        lottoNumbers.add(12);
-        lottoNumbers.add(15);
-        lottoNumbers.add(18);
+        List<LottoNo> lottoNumbers = new ArrayList();
+        lottoNumbers.add(new LottoNo(3));
+        lottoNumbers.add(new LottoNo(6));
+        lottoNumbers.add(new LottoNo(9));
+        lottoNumbers.add(new LottoNo(12));
+        lottoNumbers.add(new LottoNo(15));
+        lottoNumbers.add(new LottoNo(18));
 
-        int[] winningNumbers = {1, 2, 3, 4, 5, 6};
-        assertEquals(2, winningChecker.checkCorrectCounts(new Lotto(lottoNumbers), winningNumbers));
+        List<Lotto> lotto = new ArrayList<>();
+        lotto.add(new Lotto(lottoNumbers));
+
+        List<LottoNo> winningNumbers = new ArrayList();
+        for (int i = 1; i < 7; i++) {
+            winningNumbers.add(new LottoNo(i));
+        }
+        int bonusNumber = 9;
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        LottoList lottoList = new LottoList(lotto, 1000);
+        winningChecker.checkResult(lottoList.toLottoListDTO(), winningLotto.toWinningLottoDTO());
+        WinningCheckerDTO winningCheckerDTO = winningChecker.toWinningCheckerDTO();
+        assertEquals(1, (int) winningCheckerDTO.getWinningList().get("FIFTH"));
     }
 
     @Test
-    public void 수익률계산Test() {
-        String winningNumbers = "1, 2, 3, 4, 5, 6";
-        List<Integer> lottoNumbers = new ArrayList();
-        lottoNumbers.add(1);
-        lottoNumbers.add(3);
-        lottoNumbers.add(6);
-        lottoNumbers.add(12);
-        lottoNumbers.add(15);
-        lottoNumbers.add(18);
+    public void 수익률Test() {
+        List<LottoNo> lottoNumbers = new ArrayList();
+        lottoNumbers.add(new LottoNo(1));
+        lottoNumbers.add(new LottoNo(2));
+        lottoNumbers.add(new LottoNo(3));
+        lottoNumbers.add(new LottoNo(7));
+        lottoNumbers.add(new LottoNo(8));
+        lottoNumbers.add(new LottoNo(9));
 
-        List lottoList = new ArrayList();
-        lottoList.add(new Lotto(lottoNumbers));
+        List<Lotto> lotto = new ArrayList<>();
+        lotto.add(new Lotto(lottoNumbers));
 
-        winningChecker.checkWinningLotto(lottoList, winningNumbers, 1000);
-        assertEquals(500, (int) winningChecker.toLottoCheckerDTO().getProfitRate());
+        List<LottoNo> winningNumbers = new ArrayList();
+        for (int i = 1; i <= 6; i++) {
+            winningNumbers.add(new LottoNo(i));
+        }
+        int bonusNumber = 10;
+        int money = 1000;
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        LottoList lottoList = new LottoList(lotto, money);
+        winningChecker.checkResult(lottoList.toLottoListDTO(), winningLotto.toWinningLottoDTO());
+        WinningCheckerDTO winningCheckerDTO = winningChecker.toWinningCheckerDTO();
+        assertEquals(500, (int) winningCheckerDTO.getProfitRate());
     }
-
-
 }

@@ -1,18 +1,18 @@
 package model;
 
 import dto.LottoListDTO;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoList {
-    private List<Lotto> lottoList = new ArrayList<>();
+    private List<Lotto> lottoList;
+    private int money;
 
-    public void addLottoToList(Lotto lotto) {
-        lottoList.add(lotto);
+    public LottoList(List<Lotto> lottoList, int money) {
+        this.lottoList = lottoList;
+        this.money = money;
     }
 
-
     public LottoListDTO toLottoListDTO() {
-        return new LottoListDTO(lottoList);
+        return new LottoListDTO(lottoList, money);
     }
 }
