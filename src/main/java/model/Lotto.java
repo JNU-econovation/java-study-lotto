@@ -1,26 +1,38 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private List<Integer> numbers;
+    private List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        this.numbers = numbers;
-    }
-
-    public List<Integer> getLottoNumbers() {
-        return numbers;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
-        for (int i = 0; i < numbers.size() - 1; i++) {
-            stringBuilder.append(String.format("%d, ", numbers.get(i)));
+    public Lotto() {
+        numbers = new ArrayList<LottoNumber>();
+        for (int i = 1; i < 46; i++) {
+            numbers.add(new LottoNumber(i));
         }
-        stringBuilder.append(numbers.get(numbers.size() - 1) + "]");
-        return stringBuilder.toString();
+        getRandomLotto();
+    }
+
+    public Lotto(List<LottoNumber> manualLotto) {
+        this.numbers = manualLotto;
+    }
+
+    private void getRandomLotto() {
+        List<LottoNumber> randomLotto = new ArrayList<LottoNumber>();
+        Collections.shuffle(randomLotto);
+        for (int i = numbers.size() - 1; i > 5; i--) {
+            numbers.remove(i);
+        }
+        this.numbers = numbers.stream()
+                .sorted(Comparator.comparing(LottoNumber::getNumber))
+                .collect(Collectors.toList());
+    }
+
+    public List<LottoNumber> getLottoNumbers() {
+        return numbers;
     }
 }

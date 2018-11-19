@@ -7,51 +7,61 @@ import utils.Splitor;
 import java.util.*;
 
 public class Result {
-    private List<Integer> winningNumbers;
+    private static int PRICE = 1000;
+    private WinningLotto winningLotto;
     private double profit;
-    private int matchingCounts[] = new int[7];
+    private Map<Rank, Integer> winningInformation;
 
-    public Result(String inputString) {
-        this.winningNumbers = Splitor.stringToIntegerArray(inputString);
+    public Result(String inputString, int bonusBall, LottoMachine lottoMachine) {
+        this.winningLotto = new WinningLotto(Splitor.stringToIntegerArray(inputString), bonusBall);
+        winningInformationSetting();
+        calculateProfit(lottoMachine.lottoDTO(), winningInformation);
+        this.profit = summationProfit(winningInformation, lottoMachine);
     }
 
-    public Result(String inputString, LottoMachine lottoMachine) {
-        this.winningNumbers = Splitor.stringToIntegerArray(inputString);
-        getMatchingCount(lottoMachine.lottoDTO().getLottos());
-        calculateProfit(lottoMachine.lottoDTO());
-    }
-
-    public void getMatchingCount(List<Lotto> lotto) {
-        int counter = 0;
-        for (int i = 0; i < lotto.size(); i++) {
-            counter = 0;
-            counter += getEachMatchingCount(lotto.get(i), winningNumbers);
-            matchingCounts[counter]++;
+    private void winningInformationSetting() {
+        winningInformation = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            winningInformation.put(rank, 0);
         }
     }
 
-    public int getEachMatchingCount(Lotto lotto, List winnungNumber) {
-        int count = 0;
-        for (int i = 0; i < winnungNumber.size(); i++)
-            count += isMatched(lotto, (int) winnungNumber.get(i));
-        return count;
-    }
-
-    public int isMatched(Lotto lotto, int index) {
-        if (lotto.getLottoNumbers().contains(index))
-            return 1;
+    private boolean isBonusMatched(List<LottoNumber> lotto) {
+        LottoNumber bonusNumber = winningLotto.winningLottoDTO().getBonusNumber();
+        if (lotto.contains(bonusNumber))
+            return true;
         else
-            return 0;
+            return false;
     }
 
-    public void calculateProfit(LottoDTO lottoDTO) {
-        double winningMoney = 0;
-        for (int i = 0; i < matchingCounts.length; i++)
-            winningMoney += RankInformation.getWinningMoney(i) * matchingCounts[i];
-        this.profit = winningMoney / (lottoDTO.getLottos().size() * 1000);
+    private Integer getMatchingCount(List<LottoNumber> lotto) {
+        Integer matchingCount = 0;
+        for (int i = 0; i < 6; i++)
+            if (lotto.contains(winningLotto.winningLottoDTO().getWinningNumbers().get(i))) {
+                matchingCount++;
+            }
+        return matchingCount;
+    }
+
+    public void calculateProfit(LottoDTO lottoDTO, Map<Rank, Integer> winningInformation) {
+        for (Lotto lottos : lottoDTO.getLottos()) {
+            List<LottoNumber> lotto = lottos.getLottoNumbers();
+            Rank rank = Rank.valueOf(getMatchingCount(lotto), isBonusMatched(lotto));
+            winningInformation.put(rank, winningInformation.get(rank));
+        }
+    }
+
+    private double summationProfit(Map<Rank, Integer> winningLottoByRank, LottoMachine lottoMachine) {
+        double sum = 0;
+        for (Rank rank : winningLottoByRank.keySet()) {
+            System.out.println(winningLottoByRank.get(rank));
+            System.out.println(rank.getWinningMoney());
+            sum += winningLottoByRank.get(rank) * rank.getWinningMoney();
+        }
+        return sum / (lottoMachine.lottoDTO().getLottos().size() * PRICE) * 100;
     }
 
     public ResultDTO resultDTO() {
-        return new ResultDTO(winningNumbers, matchingCounts, profit);
+        return new ResultDTO(winningInformation, profit);
     }
 }

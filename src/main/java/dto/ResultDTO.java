@@ -1,24 +1,19 @@
 package dto;
 
-import java.util.List;
+import model.Rank;
+import java.util.Map;
 
 public class ResultDTO {
-    private List<Integer> winningNumbers;
-    private int[] matchingCounts;
+    private Map<Rank, Integer> winningInformation;
     private double profit;
 
-    public ResultDTO(List<Integer> winningNumbers, int[] matchingCounts, double profit) {
-        this.winningNumbers = winningNumbers;
-        this.matchingCounts = matchingCounts;
+    public ResultDTO(Map<Rank, Integer> winningInformation, double profit) {
+        this.winningInformation = winningInformation;
         this.profit = profit;
     }
 
-    public List getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int[] getMatchingCounts() {
-        return matchingCounts;
+    public Map<Rank, Integer> getWinningInformation() {
+        return winningInformation;
     }
 
     public double getProfit() {
