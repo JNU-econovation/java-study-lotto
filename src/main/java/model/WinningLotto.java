@@ -1,9 +1,7 @@
 package model;
 
-import dto.LottoDTO;
 import dto.WinningLottoDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WinningLotto {
@@ -16,11 +14,7 @@ public class WinningLotto {
         this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
-    public List<LottoNumber> getWinningLotto(){
-        return winningLotto;
-    }
-
-    public WinningLottoDTO winningLottoDTO(){
+    public WinningLottoDTO winningLottoDTO() {
         return new WinningLottoDTO(winningLotto, this.bonusNumber);
     }
 }

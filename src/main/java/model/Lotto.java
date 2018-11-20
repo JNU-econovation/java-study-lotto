@@ -10,7 +10,7 @@ public class Lotto {
     private List<LottoNumber> numbers;
 
     public Lotto() {
-        numbers = new ArrayList<LottoNumber>();
+        numbers = new ArrayList<>();
         for (int i = 1; i < 46; i++) {
             numbers.add(new LottoNumber(i));
         }
@@ -22,14 +22,23 @@ public class Lotto {
     }
 
     private void getRandomLotto() {
-        List<LottoNumber> randomLotto = new ArrayList<LottoNumber>();
-        Collections.shuffle(randomLotto);
+        Collections.shuffle(numbers);
         for (int i = numbers.size() - 1; i > 5; i--) {
             numbers.remove(i);
         }
         this.numbers = numbers.stream()
                 .sorted(Comparator.comparing(LottoNumber::getNumber))
                 .collect(Collectors.toList());
+    }
+
+    public String printLotto() {
+        StringBuilder lottoPrinter = new StringBuilder();
+        lottoPrinter.append("[");
+        for (int i = 0; i < 5; i++) {
+            lottoPrinter.append(numbers.get(i) + ", ");
+        }
+        lottoPrinter.append(numbers.get(5) + " ]\n");
+        return lottoPrinter.toString();
     }
 
     public List<LottoNumber> getLottoNumbers() {

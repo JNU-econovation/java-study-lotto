@@ -8,7 +8,6 @@ public enum Rank {
     FIFTH(3, 5000),
     MISS(0, 0);
 
-
     private Rank(int matchingCount, int winningMoney) {
         this.matchingCount = matchingCount;
         this.winningMoney = winningMoney;
@@ -16,7 +15,6 @@ public enum Rank {
 
     private int matchingCount;
     private int winningMoney;
-    private static final Rank[] RANK_INDEX = {MISS, MISS, MISS, FIFTH, FOURTH, THIRD, SECOND, FIRST};
 
     public int getMatchingCount() {
         return matchingCount;
@@ -24,10 +22,6 @@ public enum Rank {
 
     public int getWinningMoney() {
         return winningMoney;
-    }
-
-    public static int getWinningMoney(int number) {
-        return RANK_INDEX[number].winningMoney;
     }
 
     public static Rank valueOf(int matchingCount, boolean matchBonus) {

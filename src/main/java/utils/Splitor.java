@@ -8,7 +8,7 @@ import java.util.List;
 public class Splitor {
 
     public static List<LottoNumber> stringToIntegerArray(String inputString) {
-        String[] stringArray = inputString.replaceAll(" ","").split(",");
+        String[] stringArray = inputString.replaceAll(" ", "").split(",");
         List<LottoNumber> returnArray = new ArrayList<>();
         for (int i = 0; i < stringArray.length; i++) {
             returnArray.add(new LottoNumber(Integer.parseInt(stringArray[i])));

@@ -12,18 +12,17 @@ public class Result {
     private double profit;
     private Map<Rank, Integer> winningInformation;
 
-    public Result(String inputString, int bonusBall, LottoMachine lottoMachine) {
-        this.winningLotto = new WinningLotto(Splitor.stringToIntegerArray(inputString), bonusBall);
-        winningInformationSetting();
+    public Result(String winningString, int bonusBall, LottoMachine lottoMachine) {
+        this.winningLotto = new WinningLotto(Splitor.stringToIntegerArray(winningString), bonusBall);
+        winningInformation = new HashMap<>();
+        winningInformation.put(Rank.FIRST, 0);
+        winningInformation.put(Rank.SECOND, 0);
+        winningInformation.put(Rank.THIRD, 0);
+        winningInformation.put(Rank.FOURTH, 0);
+        winningInformation.put(Rank.FIFTH, 0);
+        winningInformation.put(Rank.MISS, 0);
         calculateProfit(lottoMachine.lottoDTO(), winningInformation);
         this.profit = summationProfit(winningInformation, lottoMachine);
-    }
-
-    private void winningInformationSetting() {
-        winningInformation = new HashMap<>();
-        for (Rank rank : Rank.values()) {
-            winningInformation.put(rank, 0);
-        }
     }
 
     private boolean isBonusMatched(List<LottoNumber> lotto) {
@@ -35,30 +34,25 @@ public class Result {
     }
 
     private Integer getMatchingCount(List<LottoNumber> lotto) {
-        Integer matchingCount = 0;
-        for (int i = 0; i < 6; i++)
-            if (lotto.contains(winningLotto.winningLottoDTO().getWinningNumbers().get(i))) {
-                matchingCount++;
-            }
-        return matchingCount;
+        int count = 0;
+        count = (int) lotto.stream().filter(winningLotto.winningLottoDTO().getWinningNumbers()::contains).count();
+        return count;
     }
 
-    public void calculateProfit(LottoDTO lottoDTO, Map<Rank, Integer> winningInformation) {
+    private void calculateProfit(LottoDTO lottoDTO, Map<Rank, Integer> winningInformation) {
         for (Lotto lottos : lottoDTO.getLottos()) {
             List<LottoNumber> lotto = lottos.getLottoNumbers();
             Rank rank = Rank.valueOf(getMatchingCount(lotto), isBonusMatched(lotto));
-            winningInformation.put(rank, winningInformation.get(rank));
+            winningInformation.put(rank, winningInformation.get(rank) + 1);
         }
     }
 
     private double summationProfit(Map<Rank, Integer> winningLottoByRank, LottoMachine lottoMachine) {
         double sum = 0;
         for (Rank rank : winningLottoByRank.keySet()) {
-            System.out.println(winningLottoByRank.get(rank));
-            System.out.println(rank.getWinningMoney());
             sum += winningLottoByRank.get(rank) * rank.getWinningMoney();
         }
-        return sum / (lottoMachine.lottoDTO().getLottos().size() * PRICE) * 100;
+        return sum / (lottoMachine.lottoDTO().getLottos().size() * PRICE);
     }
 
     public ResultDTO resultDTO() {
