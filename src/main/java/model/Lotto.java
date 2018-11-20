@@ -19,6 +19,28 @@ public class Lotto {
 
     public Lotto(List<LottoNumber> manualLotto) {
         this.numbers = manualLotto;
+        customNumberValidationCheck(manualLotto);
+    }
+
+    private void customNumberValidationCheck(List<LottoNumber> manualLotto) {
+        if (isBlank(manualLotto)) throw new IllegalArgumentException();
+        if (hasNull(manualLotto)) throw new IllegalArgumentException();
+    }
+
+    private boolean isBlank(List<LottoNumber> manualLotto) {
+        if (manualLotto == null)
+            return true;
+        else
+            return false;
+    }
+
+    private boolean hasNull(List<LottoNumber> manualLotto) {
+        for (int i = 0; i < manualLotto.size(); i++) {
+            if (manualLotto.get(i) == null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void getRandomLotto() {
