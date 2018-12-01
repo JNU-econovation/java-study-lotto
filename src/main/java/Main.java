@@ -4,13 +4,11 @@ import view.InputView;
 import view.ResultView;
 
 public class Main {
+
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
-        LottoMachine lottoMachine = new LottoMachine();
-        lottoMachine.buyLotto(inputView.purchaseLotto());
-        resultView.printLottos(lottoMachine.lottoDTO());
-        Result result = new Result(resultView.inputWinningNumbers(), lottoMachine);
-        resultView.printProfit(result.resultDTO());
+        LottoMachine lottoMachine = new LottoMachine(InputView.purchaseLotto(), InputView.manualyPurchaseLottos(InputView.manualyPurchaseLottoCount()));
+        ResultView.printLottos(lottoMachine.lottoDTO());
+        Result result = new Result(ResultView.inputWinningNumbers(), InputView.getBonusBall(), lottoMachine);
+        ResultView.printProfit(result.resultDTO());
     }
 }
