@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMaker {
-    private static final int BOUND_NUMBER = 46;
+    private static final int MIN_BOUND_NUMBER = 1;
+    private static final int MAX_BOUND_NUMBER = 45;
     private static final int NUMBER_PER_LOTTO = 6;
+    private static final int PRICE_OF_LOTTO = 1000;
 
-    private List makeNumbersInRange() {
+    private List<Integer> makeNumbersInRange() {
         List<Integer> numbers = new ArrayList();
-        for (int i = 1; i < BOUND_NUMBER; i++) {
+        for (int i = MIN_BOUND_NUMBER; i <= MAX_BOUND_NUMBER; i++) {
             numbers.add(i);
         }
         return numbers;
@@ -19,28 +21,48 @@ public class LottoMaker {
     private List<Integer> shuffleNumbers(List<Integer> numbers) {
         Collections.shuffle(numbers);
 
-        List<Integer> shuffledNumbers = new ArrayList();
+        return extractNumbers(numbers);
+    }
+
+    private List<Integer> extractNumbers(List<Integer> numbers) {
+        List<Integer> extractedNumbers = new ArrayList();
         for (int i = 0; i < NUMBER_PER_LOTTO; i++) {
-            shuffledNumbers.add(numbers.get(i));
+            extractedNumbers.add(numbers.get(i));
         }
-        return shuffledNumbers;
+        return extractedNumbers;
     }
 
-    private List sortNumbers(List<Integer> numbers) {
-        List sortedNumbers = new ArrayList();
 
+    private List<LottoNo> sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
-        sortedNumbers.addAll(numbers);
 
-        return sortedNumbers;
+        return convertListIntegerToLottoNo(numbers);
     }
 
-    public LottoList makeLottoList(int money) {
-        LottoList lottoList = new LottoList();
-        for (int i = 0; i < money / 1000; i++) {
-            lottoList.addLottoToList(makeLotto());
+
+    private List<LottoNo> convertListIntegerToLottoNo(List<Integer> integerList) {
+        List<LottoNo> LottoNoList = new ArrayList();
+
+        for (int number : integerList) {
+            LottoNoList.add(new LottoNo(number));
         }
-        return lottoList;
+
+        return LottoNoList;
+    }
+
+    public LottoList makeLottoList(int money, List<Lotto> manualLottoList) {
+        List<Lotto> lottoList = new ArrayList();
+        lottoList.addAll(manualLottoList);
+        lottoList.addAll(addAutoLottoList(money / PRICE_OF_LOTTO - manualLottoList.size()));
+        return new LottoList(lottoList, money);
+    }
+
+    private List<Lotto> addAutoLottoList(int autoLottoCount) {
+        List<Lotto> autoLottoList = new ArrayList<>();
+        for (int i = 0; i < autoLottoCount; i++) {
+            autoLottoList.add(makeLotto());
+        }
+        return autoLottoList;
     }
 
     public Lotto makeLotto() {

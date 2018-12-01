@@ -1,8 +1,11 @@
 import dto.LottoListDTO;
-import model.LottoMaker;
-import model.WinningChecker;
+import dto.WinningLottoDTO;
+import model.*;
+import util.Converter;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class LottoApplication {
     private static LottoMaker lottoMaker = new LottoMaker();
@@ -10,10 +13,17 @@ public class LottoApplication {
 
     public static void main(String[] args) {
         int money = InputView.inputPayment();
-        LottoListDTO lottoListDTO = lottoMaker.makeLottoList(money).toLottoListDTO();
-        OutputView.getPurchaseResult(lottoListDTO);
+        int manualLottoCount = InputView.inputManualLotto();
+        List<Lotto> manualLottoList = Converter.splitNumbers(InputView.inputManualLottoNumbers(manualLottoCount));
 
-        winningChecker.checkWinningLotto(lottoListDTO.getLottoList(), InputView.inputWinningNumbers(), money);
-        OutputView.getWinningResult(winningChecker.toLottoCheckerDTO());
+        LottoListDTO lottoListDTO = lottoMaker.makeLottoList(money, manualLottoList).toLottoListDTO();
+        OutputView.getPurchaseResult(lottoListDTO, manualLottoCount);
+
+        List<Integer> winningNumbers = Converter.splitNumbers(InputView.inputWinningNumbers());
+        LottoNo bonusNumber = new LottoNo(InputView.inputBonusNumber());
+
+        WinningLottoDTO winningLottoDTO = new WinningLotto(Converter.convertIntegerToLottoNo(winningNumbers), bonusNumber.getLottoNo()).toWinningLottoDTO();
+        winningChecker.checkResult(lottoListDTO, winningLottoDTO);
+        OutputView.getWinningResult(winningChecker.toWinningCheckerDTO());
     }
 }

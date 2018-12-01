@@ -1,24 +1,21 @@
 package dto;
 
-import model.Lotto;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class WinningCheckerDTO {
-    private int[] winningList;
     private float profitRate;
+    private Map<String, Integer> winningList;
 
-    public WinningCheckerDTO(int[] winningList, float profitRate) {
-        this.winningList = winningList;
+    public WinningCheckerDTO(float profitRate, Map<String, Integer> winningList) {
         this.profitRate = profitRate;
-    }
-
-    public int[] getWinningList() {
-        return winningList;
+        this.winningList = winningList;
     }
 
     public float getProfitRate() {
         return profitRate;
+    }
+
+    public Map<String, Integer> getWinningList() {
+        return winningList;
     }
 }

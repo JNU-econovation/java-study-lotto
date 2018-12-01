@@ -2,30 +2,29 @@ package model;
 
 public enum WinningInfo {
     FIRST(6, 2000000000),
-    SECOND(5, 1500000),
-    THIRD(4, 50000),
-    FOURTH(3, 5000),
-    FIFTH(2, 0),
-    SIXTH(1, 0),
-    FAIL(0, 0);
+    SECOND(5, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000);
 
-    public static final int MIN_COUNT_GET_BENEFIT = 3;
-    public static final int MAX_COUNT_GET_BENEFIT = 7;
     private final int correctCount;
     private final int benefit;
-
-    private static final WinningInfo[] winningInfo = {FAIL, SIXTH, FIFTH, FOURTH, THIRD, SECOND, FIRST};
+    private static String[] rank = {"FIRST","SECOND","THIRD","FOURTH","FIFTH"};
 
     WinningInfo(int correctCount, int benefit) {
         this.correctCount = correctCount;
         this.benefit = benefit;
     }
 
-    public static int getCorrectCount(int number) {
-        return winningInfo[number].correctCount;
+    public int getCorrectCount() {
+        return correctCount;
     }
 
-    public static int getBenefit(int number) {
-        return winningInfo[number].benefit;
+    public int getBenefit() {
+        return benefit;
+    }
+
+    public static String getRank(int i) {
+        return rank[i];
     }
 }
