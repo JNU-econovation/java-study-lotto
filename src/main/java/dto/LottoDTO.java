@@ -1,21 +1,17 @@
 package dto;
 
-import model.Lottery;
+import model.LottoNo;
 
 import java.util.List;
 
 public class LottoDTO {
-    private List<Lottery> lotteries;
+    private List<LottoNo> ticket;
 
-    public LottoDTO(List<Lottery> lotteries) {
-        this.lotteries = lotteries;
+    public LottoDTO(List<LottoNo> ticket) {
+        this.ticket = ticket;
     }
 
-    public List<Lottery> getLotteries() {
-        return lotteries;
-    }
-
-    public int getCount() {
-        return lotteries.size();
+    public List<LottoNo> getTicket() {
+        return ticket;
     }
 }

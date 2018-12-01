@@ -1,32 +1,27 @@
 package model;
 
 import dto.LottoDTO;
-import view.ResultView;
+import utils.AutoTicketGenerator;
+import utils.ManualTicketGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
-    private static final int PRICE = 1000;
-    private List<Lottery> lotteries;
+    private List<LottoNo> ticket;
 
-    public Lotto(int money) {
-        int count = money / PRICE;
-        this.lotteries = buyTickets(count);
-        ResultView.printBuyTickets(count);
+    public Lotto() {
+        this.ticket = AutoTicketGenerator.issue();
     }
 
-    public List<Lottery> buyTickets(int count) {
-        List<Lottery> lotteries = new ArrayList<>();
+    public Lotto(String manualBalls) {
+        this.ticket = ManualTicketGenerator.issue(manualBalls);
+    }
 
-        for (int i = 0; i < count; i++) {
-            lotteries.add(new Lottery());
-            System.out.println(lotteries.get(i).getTicket());
-        }
-        return lotteries;
+    public List<LottoNo> getTicket() {
+        return ticket;
     }
 
     public LottoDTO toLottoDTO() {
-        return new LottoDTO(lotteries);
+        return new LottoDTO(ticket);
     }
 }
